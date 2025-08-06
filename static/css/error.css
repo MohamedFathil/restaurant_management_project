@@ -1,5 +1,5 @@
-/* Global Style */
-body{
+/* Error Page Style */
+.error-page-body{
     font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
     text-align: center;
@@ -8,23 +8,23 @@ body{
     margin:0;
 }
 /* Error Container */
-.error_container{
+.error-page-container{
     max-width: 600px;
     margin: auto;
 }
-/* Heading */
-h1{
+/* Error Heading */
+.error-page-title{
     font-size: 100px;
     color: #ff4b4b;
     margin-bottom: 10px;
 }
-/* Description text */
-p{
+/* Error Description text */
+.error-page-message{
     font-size: 20px;
     margin-bottom: 30px;
 }
-/* Button Link */
-a{
+/* Error Button Link */
+.error-page-button{
     text-decoration: none;
     color: white;
     background-color: #ff4b4b;
@@ -32,8 +32,8 @@ a{
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.2s ease;
 }
-/* Button Hover */
-a:hover{
+/* Error Button Hover */
+.error-page-button:hover{
     background: #e04343;
     transform: scale(1.05); /*Added subtle Animation*/
 }
