@@ -1,0 +1,27 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: #fff8f0;
+    margin: 0;
+    text-align: center;
+    color: #333;
+}
+
+.header{
+    background: linear-gradient(90deg, #ff7f50, #ff6347);
+    color: white;
+    padding: 50px 20px;
+}
+
+.container{
+    margin-top: 40px;
+}
+
+.btn{
+    background: #ff7f50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    margin: 10px;
+    cursor: pointer;
+}
