@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Restaurant Management</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body class="home-page-body">
+        <!-- Header -->
+        <header class="home-page-header">
+            <h1 class="home-page-title">Welcome to our Restaurent</h1>
+            <p class="home-page-subtitle">Effortlessly manage orders, menu and accounts.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="home-page-container">
+            <!-- Order Card -->
+            <div class="home-card">
+                <h2 class="home-card-title">Manage Orders</h2>
+                <p class="home-card-text">Track and update customer orders in real-time</p>
+                <a href="#" class="home-page-button">Go to Orders</a>
+            </div>
+
+            <!-- Menu Card -->
+            <div class="home-card">
+                <h2 class="home-card-title">Manage menu</h2>
+                <p class="home-card-text">Easily add, edit and organise menu items.</p>
+                <a href="#" class="home-card-button">Go to Menu</a>
+            </div>
+
+            <!-- Account Card -->
+            <div class="home-card">
+                <h1 class="home-card-title">Account Settings</h1>
+                <p class="home-card-text">Update profile details and account preference.</p>
+                <a class="home-card-button">Go to Account</a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="home-page-footer">
+            <p>@copy; 2025 Restaurant Management System. All Rights Reserved.</p>
+        </footer>
+    </body>
+</html>
