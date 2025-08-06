@@ -1,5 +1,5 @@
-/* Global Style */
-body{
+/* Home Page Style */
+.home-page-body{
     font-family: 'Segoe UI', Tahoma,Genva, Verdana, sans-serif;
     background-color: #fff8f0;
     margin: 0;
@@ -8,14 +8,22 @@ body{
     text-align: center;
 }
 /* Header */
-.homepage-header{
+.home-page-header{
     background: linear-gradient(90deg, #ff7f50, #ff6347);
     color: white;
     padding: 40pc 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+.home-page-title{
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+.home-page-subtitle{
+    font-size: 1.2em;
+    margin: 0;
+}
 /* Main Content */
-.homepage-container{
+.home-page-container{
     margin:40px auto;
     max-width: 1000px;
     display: grid;
@@ -24,34 +32,41 @@ body{
     padding: 0 20px;
 }
 /* Cards */
-.card{
+.home-card{
     background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    text-align: center;
 }
-.card:hover{
+.home-card-title{
+    font-size: 1.5em;
+    margin-bottom:10px;
+}
+.home-card-text{
+    font-size:1em;
+    margin-bottom:10px;
+}
+.home-card:hover{
     transform: translateY(-5px);
 }
 /* Buttons */
-.button-primary{
-    background: #ff7f50;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 6px;
+.home-page-button{
     display: inline-block;
-    margin-top: 10px;
-    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    background: #ff4b4b;
+    padding: 10px 20px;
+    border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.button-primary:hover{
+.home-page-button:hover{
     background: #e5533c; /*hover effect added*/
     transform : scale(1.05);
 }
 /* Footer */
-footer{
+.home-page-footer{
+    text-align: center;
     margin-top: 30px;
     background: #ff6347;
     color: white;
