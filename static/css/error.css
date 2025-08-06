@@ -1,37 +1,22 @@
-/* Error Page Style */
-.error-page-body{
-    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+/* Error page Style */
+.error-section{
     text-align: center;
-    padding: 50px;
-    color: #333;
-    margin:0;
+    padding: 60px 20px;
 }
-/* Error Container */
-.error-page-container{
-    max-width: 600px;
-    margin: auto;
+.error-section h2{
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #dc3545;
 }
-/* Error Heading */
-.error-page-title{
-    font-size: 100px;
-    color: #ff4b4b;
+.error-section p{
+    font-size: 18px;
+    margin-bottom: 25px;
 }
-/* Error Description text */
-.error-page-message{
-    font-size: 20px;
-    margin-bottom: 30px;
+/* button Styles */
+.error-section .btn{
+    background: #007bff;
 }
-/* Error Button Link */
-.error-page-button{
-    text-decoration: none;
-    color: white;
-    background-color: #ff4b4b;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s ease;
-}
-/* Error Button Hover */
-.error-page-button:hover{
-    background: #e04343;
+/* hover effect */
+.error-section .btn:hover{
+    background: #0056b3;
 }
