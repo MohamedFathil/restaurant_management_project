@@ -1,6 +1,6 @@
 /* Home Page Style */
 .home-page-body{
-    font-family: 'Segoe UI', Tahoma,Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma,Geneva, Verdana, sans-serif; /* Fixed typo : geneva*/
     background-color: #fff8f0;
     margin: 0;
     padding: 0; /* consistent padding applied */
@@ -11,15 +11,15 @@
 .home-page-header{
     background: linear-gradient(90deg, #ff7f50, #ff6347);
     color: white;
-    padding: 40px 20px;
+    padding: 40px 20px; /*fixed 40px*/
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 .home-page-title{
-    font-size: 2.5em;
+    font-size: 2.8em;
     margin-bottom: 10px;
 }
 .home-page-subtitle{
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin: 0;
 }
 /* Main Content */
@@ -45,7 +45,7 @@
 }
 .home-card-text{
     font-size:1em;
-    margin-bottom:10px;
+    margin-bottom:20px;
 }
 .home-card:hover{
     transform: translateY(-5px);
