@@ -36,5 +36,9 @@ class MenuItemView(APIView):
 # template view for menu
 def menu_page(request):
     """Render menu page with item displayed in html."""
-    menu_items = Item.objects.all()
+    menu_items = [
+        {"name":"Pizza", "price":10},
+        {"name":"Chappathi", "price":5},
+        {"name":"Fried Rice", "price":25},
+    ]
     return render(request, 'menu.html', {'menu_items':menu_items})
