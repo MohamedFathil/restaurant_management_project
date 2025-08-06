@@ -1,0 +1,44 @@
+/* Menu Page Style */
+.menu-container{
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.menu-title{
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+/* menu list */
+.menu-list{
+    list-style: none;
+    padding: 0;
+}
+.menu-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+}
+.menu-item:last-child{
+    border-bottom: none;
+}
+/* Item name styling */
+item-name{
+    font-weight: 500;
+    color: #444;
+}
+.item-price{
+    color: #f39c12;
+    font-weight: bold;
+}
+.no-items{
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+}
