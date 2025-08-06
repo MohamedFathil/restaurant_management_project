@@ -27,7 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-RESTAURENT_NAME = "Bite a Bite"
+RESTAURANT_NAME = "Bite a Bite"
 
 # Application definition
 
