@@ -1,0 +1,23 @@
+/* About page styling */
+.about-section{
+    text-align: center;
+    padding: 50px 20px;
+}
+/* Title Styling */
+.about-section h2{
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+/* Description Styling */
+.about-section p{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+/* Image styling */
+.about image{
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
