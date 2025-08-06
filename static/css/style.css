@@ -23,7 +23,7 @@
     margin: 0;
 }
 /* Main Content */
-.home-page-container{
+.home-container{
     margin:40px auto;
     max-width: 1000px;
     display: grid;
