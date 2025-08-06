@@ -1,44 +1,42 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Restaurant Management</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
-    <body class="home-page-body">
+    <body style="font-family:Arial, sans-serif; background-color:#f8f9fa; margin:0; color:#333;">
         <!-- Header -->
-        <header class="home-page-header">
-            <h1 class="home-page-title">Welcome to our Restaurent</h1>
-            <p class="home-page-subtitle">Effortlessly manage orders, menu and accounts.</p>
+        <header style="background: linear-gradient(90deg,#ff7f50, #ff4b4b; color:white; text-align:center; padding:40px 20px;">
+            <h1 style="font-size:2.5em; margin: 0;">Welcome to our Restaurent</h1>
+            <p style="font-size: 1.2em; margin-top:10px;">Effortlessly manage orders, menu and accounts.</p>
         </header>
 
         <!-- Main Content -->
-        <main class="home-page-container">
+        <main style="display:grid; grid-template-column: repeat(auto-fit, minmax(250px, 1fr)); gap:20px; max-width: 1000px; margin: 40px auto; padding:0 20px;">
             <!-- Order Card -->
-            <div class="home-card">
-                <h2 class="home-card-title">Manage Orders</h2>
-                <p class="home-card-text">Track and update customer orders in real-time</p>
-                <a href="#" class="home-page-button">Go to Orders</a>
+            <div style="background:white; padding:20px; border-radius:10px; text-align:center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h2 style="font-size:2.5em; margin-bottom:10px;">Manage Orders</h2>
+                <p style="font-size:1.2em; margin-bottom: 20px;">Track and update customer orders in real-time</p>
+                <a href="#" style="display:inline-block; text-decoration: none; background: #ff4b4b; color: white; padding: 10px 20px; border-radius: 5px;">Go to Orders</a>
             </div>
 
             <!-- Menu Card -->
-            <div class="home-card">
-                <h2 class="home-card-title">Manage menu</h2>
-                <p class="home-card-text">Easily add, edit and organise menu items.</p>
+            <div style="background: white; padding:20px; border-radius:10px; text-align:center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h2 style="font-size:2.5em; margin-bottom: 10px;">Manage menu</h2>
+                <p style="font-size:1.2em; margin-bottom: 20px;">Easily add, edit and organise menu items.</p>
                 <a href="#" class="home-card-button">Go to Menu</a>
             </div>
 
             <!-- Account Card -->
-            <div class="home-card">
-                <h1 class="home-card-title">Account Settings</h1>
-                <p class="home-card-text">Update profile details and account preference.</p>
-                <a class="home-card-button">Go to Account</a>
+            <div style="background:white; padding: 20px; border-radius: 10px; text-align:center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h1 style="font-size: 2.5em; margin-bottom: 10px;">Account Settings</h1>
+                <p style="font-size: 1.2em; margin-bottom: 20px;">Update profile details and account preference.</p>
+                <a href="#" style="display: inline-block; text-decoration: none; background: #ff4b4b; color: white; padding: 10px 20px; border-radius: 5px;">Go to Account</a>
             </div>
         </main>
 
         <!-- Footer -->
-        <footer class="home-page-footer">
+        <footer style="text-align: center; background: #ff4b4b; color: white; padding: 15px 0; margin-top; 40px ">
             <p>@copy; 2025 Restaurant Management System. All Rights Reserved.</p>
         </footer>
     </body>
