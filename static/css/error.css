@@ -16,7 +16,6 @@
 .error-page-title{
     font-size: 100px;
     color: #ff4b4b;
-    margin-bottom: 10px;
 }
 /* Error Description text */
 .error-page-message{
@@ -35,5 +34,4 @@
 /* Error Button Hover */
 .error-page-button:hover{
     background: #e04343;
-    transform: scale(1.05); /*Added subtle Animation*/
 }
