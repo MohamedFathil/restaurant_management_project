@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Menu - Restaurant Management {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="menu-container">
+    <h2 class="menu-title">Our Menu</h2>
+    {% if menu_items %}
+        <ul class="menu-list">
+            {% for item in menu_items %}
+                <li class="menu-item">{{item.name}}</li>
+                <li class="menu-item">{{item.price}}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-items">No menu items are available at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}
