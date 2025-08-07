@@ -4,7 +4,8 @@ from django.conf import settings
 
 def home(request):
     context = {
-        'restaurant_name':settings.RESTAURANT_NAME
+        'restaurant_name':settings.RESTAURANT_NAME,
+        'restaurant_phone': settings.RESTAURANT_PHONE_NUMBER
     }
     return render(request, 'home.html', context)
 
