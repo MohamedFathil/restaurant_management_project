@@ -3,7 +3,6 @@ def greet_user(name):
     Greets the user by their name.
     """
     return f"Hello, {name}! Welcome to Restaurant Manger"
-
 def calculate_bill(items):
     """
     Calculates the total bill from a list of menu items.
@@ -13,7 +12,6 @@ def calculate_bill(items):
     for item in items:
         total += item.get('price',0)
     return total
-
 def get_contact_info():
     """
     Displays restaurant contact information.
@@ -23,7 +21,6 @@ def get_contact_info():
     print("Contact Us")
     print(f"Phone : {phone}")
     print(f"Email : {email}")
-
 def main():
     """
     main function to demonstrate functionality.
