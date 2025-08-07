@@ -12,16 +12,25 @@ body{
 }
 /* Header */
 .main-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: #007bff;
     color: #fff;
     padding: 20px;
-    text-align: center;
 }
 .main-header h1{
     margin-bottom: 10px;
     font-size: 18px;
 }
 /* Navigation Styling */
+.main-nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
 .main-nav a{
     color: whitesmoke;
     text-decoration: none;
@@ -46,6 +55,19 @@ body{
     padding: 10px;
     margin-top: 20px;
     font-size:14px;
+}
+/* Make font responsive */
+@media (max-width: 600px){
+    .main-header h1{
+        font-size: 1.5rem;
+    }
+    .main-nav a{
+        font-size: 0.9rem;
+        padding: 5px;
+    }
+    .content{
+        padding: 20px 10px;
+    }
 }
 /* Common Utilities */
 .container{
