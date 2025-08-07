@@ -28,10 +28,15 @@ class ItemView(APIView):
 # API View for menu items
 class MenuItemView(APIView):
     def get(self, request):
-        """fetch all menu items"""
-        menu_items = Item.objects.all()
-        serializer = ItemSerializer(menu_items, many=True )
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        """fetch all menu items with error handling"""
+        try:
+            menu_items = Item.objects.all()
+            serializer = ItemSerializer(menu_items, many=True )
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error":"Failed to retrive menu data", "details":str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 # template view for menu
 def menu_page(request):
