@@ -28,6 +28,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 RESTAURANT_NAME = "Bite a Bite"
+RESTAURANT_PHONE_NUMBER = "+91 9876543210"
 
 # Application definition
 
