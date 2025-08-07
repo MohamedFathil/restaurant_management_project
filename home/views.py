@@ -10,4 +10,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 def contact(request):
-    return render(request, 'contact.html')
+    context = {
+        'restaurant_phone':settings.RESTAURANT_PHONE
+    }
+    return render(request, 'contact.html', context)
