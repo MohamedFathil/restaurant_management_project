@@ -10,6 +10,8 @@
 <section class="home-section">
     <h2>Welcome to {{ restaurant_name }}</h2>
     <p>Effortlessly manage orders, menu and customers from one platforms.</p>
+    <!-- Display Phone Number -->
+    <p>Contact us at : {{restaurant_phone}}</p>
     <a href="{% url 'about' %}">Learn more about us</a>
 </section>
 {% endblock %}
