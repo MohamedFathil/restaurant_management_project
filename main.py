@@ -14,7 +14,7 @@ def calculate_bill(items):
         total += item.get('price',0)
     return total
 
-def show_contact_info():
+def get_contact_info():
     """
     Displays restaurant contact information.
     """
