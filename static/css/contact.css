@@ -1,0 +1,41 @@
+/* Contact section styles */
+.contact-section{
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(to right, #fbfbfb, #ebedee);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* title styles */
+.contact-section h2{
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+/* contact info styling */
+.contact-info{
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.01);
+}
+/* paragraph styles */
+.contact-info p{
+    font-size: 18px;
+    margin: 12px 0;
+    color: #555;
+    line-height: 1.6;
+}
+/* Responsice designing */
+@media (max-width: 600px){
+    .contact-section h2{
+        font-size: 28px;
+    }
+    .contact-info{
+        padding: 20px;
+    }
+    .contact-info p{
+        font-size: 16px;
+    }
+}
