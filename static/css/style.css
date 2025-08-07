@@ -12,25 +12,31 @@ body{
 }
 /* Header */
 .main-header{
-    background: #343a40;
+    background: #007bff;
     color: #fff;
-    padding: 20px 0;
+    padding: 20px;
     text-align: center;
 }
 .main-header h1{
     margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 18px;
 }
 /* Navigation Styling */
 .main-nav a{
-    color: #fff;
+    color: whitesmoke;
     text-decoration: none;
     margin: 0 15px;
-    font-size: 16px;
+    font-weight: bold;
     transition: color 0.3s;
 }
 .main-nav a:hover{
     color: #f39c12;
+    text-decoration: underline;
+}
+/* Content */
+.content{
+    padding: 40px 20px;
+    min-height: 60vh;
 }
 /* Footer */
 .main-footer{
