@@ -1,47 +1,73 @@
+import os
+import django
+
+# setup django environment
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'restaurant_management.settings')
+django.setup()
+
+from django.conf import settings
+from home.models import *
+from products.models import *
+from orders.models import *
+
 def greet_user(name):
     """
-    Greets the user by their name.
+    Greet the user by name
     """
-    return f"Hello, {name}! Welcome to Restaurant Manger"
-def calculate_bill(items):
-    """
-    Calculates the total bill from a list of menu items.
-    Each item is a dictionary with 'name' and 'price'.
-    """
-    total = 0
-    for item in items:
-        total += item.get('price',0)
-    return total
+    return f"Hello {name}! Welcome to {settings.RESTAURANT_NAME}."
+
 def get_contact_info():
     """
-    Displays restaurant contact information.
+    Retrieves restaurant contact info from settings or database
     """
-    phone = "+91 9876543210"
-    email = "contact@restaurant.com"
-    print("Contact Us")
-    print(f"Phone : {phone}")
-    print(f"Email : {email}")
+    try:
+        phone = getattr(settings, 'RESTAURANT_PHONE', None)
+        email = getattr(settings, 'RESTAURANT_EMAIL', None)
+        if not phone or not email:
+            raise ValueError("Contact info missing in settings.")
+        return {
+            'phone':phone,
+            'email':email
+        }
+    except Exception as e:
+        print("Error fetching contact info: ",e)
+        return {
+            'phone':'Not Available',
+            'email':'Not Available'
+        }
+
+def show_menu():
+    """
+    Displays all available products from the database
+    """
+    from products.models import Products
+    try:
+        products = Products.objects.all()
+        if not products:
+            print("No products available")
+            return 
+        print("\nMenu : ")
+        for product in products:
+            print(f" - {product.name}: {product.price}")
+    except Exception as e:
+        print("Error", e)
+
 def main():
     """
-    main function to demonstrate functionality.
+    Main logic function to simulate a basic run of system
     """
-    # greet
-    user_name = "Alice"
-    print(greet_user(user_name))
+    print("="*40)
+    print(greet_user("John"))
 
-    # calculate bill
-    order_items = [
-        {'name':'Pizza', 'price':200},
-        {'name':'Cold drink', 'price':50},
-        {'name':'Brownie', 'price': 80}
-    ]
-    total = calculate_bill(order_items)
-    print(f"Total Bill : {total}")
+    #Display contact
+    contact_info = get_contact_info()
+    print('\n Contact Info:')
+    print(f"Phone : {contact_info['phone']}")
+    print(f"Email : {contact_info['email']}")
 
-    # contact info
-    show_contact_info()
-    
-# run the script
+    # show menu
+    show_menu()
+    print("="*40)
+
 if __name__ == '__main__':
     main()
-
