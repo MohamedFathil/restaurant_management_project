@@ -1,0 +1,34 @@
+/* Reservations styling */
+.reservations-page{
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f6f8fa, #e2e6ea);
+    color: #333;
+    text-align: center;
+}
+/* Title styles */
+.reservations-page h1{
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+/* message style */
+.reservations-page p{
+    font-size: 1.2rem;
+    max-width: 600px;
+    opacity: 0.85;
+}
+/* responsive */
+@media (max-width: 768px){
+    .reservations-page{
+        padding: 15px;
+    }
+    .reservations-page h1{
+        font-size: 1.6rem;
+    }
+    .reservations-page p{
+        font-size: 1rem;
+    }
+}
