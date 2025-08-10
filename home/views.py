@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.conf import settings
-# Create your views here.
 
 def home(request):
     context = {
@@ -14,3 +13,7 @@ def contact(request):
         'restaurant_phone':settings.RESTAURANT_PHONE
     }
     return render(request, 'contact.html', context)
+
+def reservations(request):
+    """Render the reservation page"""
+    return render(request, 'reservations.html')
