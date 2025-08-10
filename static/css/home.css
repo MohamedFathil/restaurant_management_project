@@ -44,6 +44,20 @@
     background-color: #0056b3;
     transform: scale(1.05);
 }
+/* logo styles */
+.retaurants-logo{
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    box-shadow: 0 5pc 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+/* logo hover effect */
+.retaurants-logo:hover{
+    transform: scale(1.05);
+}
+/* Responsive design */
 @media (max-width: 768px){
     .home-section{
         padding: 30px 15px;
@@ -58,5 +72,8 @@
     .home-section a{
         padding: 10px 20px;
         font-size: 14px;
+    }
+    .retaurants-logo{
+        max-width: 150px;
     }
 }
