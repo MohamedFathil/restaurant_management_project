@@ -44,6 +44,31 @@
     background-color: #0056b3;
     transform: scale(1.05);
 }
+/* Search style */
+.search-form{
+    margin: 20px 0;
+    text-align: center;
+}
+/* Search input styles */
+.search-input{
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/* Search button */
+.search-button{
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* Search button hover styles */
+.search-button:hover{
+    background-color: #218838;
+}
 /* logo styles */
 .retaurants-logo{
     max-width: 200px;
