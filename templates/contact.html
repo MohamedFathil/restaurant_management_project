@@ -31,4 +31,15 @@
         <button type="submit">Send Message</button>
     </form>
 </section>
+<script>
+    document.getElementById(contactForm).addEventListener("submit", function(event){
+        let name = document.getElementById("name").value.trim()
+        let email = document.getElementById("email").value.trim()
+
+        if(!name || !email){
+            alert("Please fill in both Name and Email fields before submitting.");
+            event.preventDefault();
+        }
+    });
+</script>
 {% endblock %}
