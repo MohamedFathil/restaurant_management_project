@@ -13,6 +13,12 @@
 
     <h2>Welcome to {{ restaurant_name }}</h2>
     <p>Effortlessly manage orders, menu and customers from one platforms.</p>
+    <!-- Search Bar -->
+    <form method="get" action="" class="search-form">
+        <input type="text" name="q" placeholder="Search menu items..." class="search-input">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+
     <!-- Display Phone Number -->
     <a href="{% url 'about' %}">Learn more about us</a>
     <a href="{% url 'contact' %}">Contact here</a>
