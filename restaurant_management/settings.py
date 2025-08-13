@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['*']
 
 RESTAURANT_NAME = "Bite a Bite"
 RESTAURANT_PHONE_NUMBER = "+91 9876543210"
+RESTAURANT_OPENING_HOURS = "Mon-Fri: 11am - 9pm, Sat-Sun: 10am - 10pm"
 
 # Application definition
 
