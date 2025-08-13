@@ -22,5 +22,22 @@
     <!-- Display Phone Number -->
     <a href="{% url 'about' %}">Learn more about us</a>
     <a href="{% url 'contact' %}">Contact here</a>
+
+    <!-- Menu items -->
+    <section class="menu-section">
+        <h3>Our Menu</h3>
+        {% if menu_items %}
+            <ul class="menu-lists">
+                {% for item in menu_items %}
+                    <li class="menu-item">
+                        <strong>{{item.name}}</strong> - {{item.price}}<br>
+                        <em>{{item.description}}</em>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No menu items available</p>
+        {% endif %}
+    </section>
 </section>
 {% endblock %}
