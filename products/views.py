@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Item
+from .models import MenuItem
 from .serializers import ItemSerializer
 
 '''
@@ -14,7 +14,7 @@ NOTE: Conside this as a reference and follow this same coding structure or forma
 class ItemView(APIView):
 
     def get(self, request):
-        items = Item.objects.all()
+        items = MenuItem.objects.all()
         serializer = ItemSerializer(items, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -30,7 +30,7 @@ class MenuItemView(APIView):
     def get(self, request):
         """fetch all menu items with error handling"""
         try:
-            menu_items = Item.objects.all()
+            menu_items = MenuItem.objects.all()
             serializer = ItemSerializer(menu_items, many=True )
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
