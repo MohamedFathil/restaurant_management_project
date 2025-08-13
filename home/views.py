@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
+from .models import Feedback
 
 def home(request):
     try:
@@ -28,3 +29,16 @@ def contact(request):
 def reservations(request):
     """Render the reservation page"""
     return render(request, 'reservations.html')
+
+def feedback_view(request):
+    """Feedback are viewed here"""
+    if request.method == "POST":
+        comment = request.POST.get('comment', "").strip()
+        return render(request, 'feedback.html', {"error":"Please enter a comment"})
+    
+    try:
+        Feedback.objects.create(comment=comment)
+        return render(request, 'feedback.html', {"success":"Thank you for your feedback"})
+    except Exception as e:
+        return render(request, "feedback.html",{"error":f"An error occured: str(e)"})
+    return render(request, "feedback.html")
