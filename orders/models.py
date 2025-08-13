@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from products.models import  MenuItem
 
 class Order(models.Model):
+    STATUS_CHOICES = [
+        ('pending','Pending'),
+        ('processing','Processing'),
+        ('completed','Completed'),
+        ('cancelled','Cancelled'),
+    ]
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
     order_items = models.ManyToMany(MenuItem, related_name="orders")
     total_amount = models.DecimalField(max_digits=8, decimal_places=2)
