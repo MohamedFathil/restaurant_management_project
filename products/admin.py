@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Order
+from .models import MenuItem
 
 
 # Custom Admins
-class ItemAdmin(admin.ModelAdmin):
+class MenuItemAdmin(admin.ModelAdmin):
     list_display = ['item_name','item_price','created_at']
     search_field = ['item_name']
 
