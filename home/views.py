@@ -1,14 +1,22 @@
+import requests
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
 from .models import Feedback
+from django.utils.timezone import now
 
 def home(request):
     try:
+        # Fetch menu data from API
+        api_url = f"settings.SITE_URL/api/menu"
+        response = requests.get(api_url, timeout=5)
+        response.raise_for_status()
+        menu_items = response.json()
         context = {
             'restaurant_name':settings.RESTAURANT_NAME,
             'restaurant_phone': settings.RESTAURANT_PHONE_NUMBER,
-            'current_year':now().year
+            'current_year':now().year,
+            'menu_items':menu_items
         }
         return render(request, 'home.html', context)
     except Exception as e:
@@ -40,5 +48,5 @@ def feedback_view(request):
         Feedback.objects.create(comment=comment)
         return render(request, 'feedback.html', {"success":"Thank you for your feedback"})
     except Exception as e:
-        return render(request, "feedback.html",{"error":f"An error occured: str(e)"})
+        return render(request, "feedback.html",{"error":f"An error occured: {str(e)}"})
     return render(request, "feedback.html")
