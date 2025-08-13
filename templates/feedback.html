@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Feedback - Restaurant Management {% endblock %}
+
+{% block content %}
+<h2>Leave your Feedback</h2>
+{% if success %}
+    <p style="color:green;">{{success}}</p>
+{% endif %}
+{% if error %}
+    <p style="color:red;">{{error}}</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <textarea name="comment" rows="5" placeholder="Write your feedback here...">
+    </textarea>
+    <button type="submit">Submit Feedback</button>
+</form>
+{% endblock %}
