@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Feedback
+from .models import Feedback, Contact
 from django.utils.timezone import now
 
 def home(request):
@@ -25,6 +25,23 @@ def home(request):
 
 def contact(request):
     try:
+        if request.method == 'POST':
+            name = request.POST.get('name','').strip()
+            email = request.POST.get('email','').strip()
+            if not name or not email:
+                context = {
+                    'restaurant_phone':settings.RESTAURANT_PHONE,
+                    'current_year':now().year,
+                    'error':'Please fill out all fields.'
+                }
+                return render(request, 'contact.html', context)
+            Contact.objects.create(name=name, email=email)
+            context = {
+                'restaurant_phone':settings.RESTAURANT_PHONE,
+                'current_year':now().year,
+                'success':'Thank you for contacting us.'
+            }
+            return render(request, 'contact.html', context)
         context = {
             'restaurant_phone':settings.RESTAURANT_PHONE,
             'current_year':now().year
