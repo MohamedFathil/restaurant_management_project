@@ -8,7 +8,7 @@ from django.utils.timezone import now
 def home(request):
     try:
         # Fetch menu data from API
-        api_url = f"settings.SITE_URL/api/menu"
+        api_url = f"(settings.SITE_URL}/api/menu"
         response = requests.get(api_url, timeout=5)
         response.raise_for_status()
         menu_items = response.json()
@@ -30,20 +30,20 @@ def contact(request):
             email = request.POST.get('email','').strip()
             if not name or not email:
                 context = {
-                    'restaurant_phone':settings.RESTAURANT_PHONE,
+                    'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
                     'current_year':now().year,
                     'error':'Please fill out all fields.'
                 }
                 return render(request, 'contact.html', context)
             Contact.objects.create(name=name, email=email)
             context = {
-                'restaurant_phone':settings.RESTAURANT_PHONE,
+                'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
                 'current_year':now().year,
                 'success':'Thank you for contacting us.'
             }
             return render(request, 'contact.html', context)
         context = {
-            'restaurant_phone':settings.RESTAURANT_PHONE,
+            'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
             'current_year':now().year
         }
         return render(request, 'contact.html', context)
