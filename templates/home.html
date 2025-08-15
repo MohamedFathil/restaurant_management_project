@@ -19,7 +19,7 @@
         <button type="submit" class="search-button">Search</button>
     </form>
 
-    <!-- Display Phone Number -->
+    <!-- Navigation link -->
     <a href="{% url 'about' %}">Learn more about us</a>
     <a href="{% url 'contact' %}">Contact here</a>
 
@@ -38,6 +38,12 @@
         {% else %}
             <p>No menu items available</p>
         {% endif %}
+    </section>
+    <section class="location-address">
+        <h3>Visit us</h3>
+        <p>{{restaurant_address}}</p>
+        <iframe src="{{map_url}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
     </section>
 </section>
 {% endblock %}
