@@ -32,6 +32,7 @@ RESTAURANT_PHONE_NUMBER = "+91 9876543210"
 RESTAURANT_OPENING_HOURS = "Mon-Fri: 11am - 9pm, Sat-Sun: 10am - 10pm"
 SITE_URL = "http://localhost:8000"
 RESTAURANT_ADDRESS = "321, Food Street, Chennai, India"
+map_url = "https://www.google.com/maps/"
 
 # Application definition
 
