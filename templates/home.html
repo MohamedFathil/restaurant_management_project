@@ -41,9 +41,19 @@
     </section>
     <section class="location-address">
         <h3>Visit us</h3>
-        <p>{{restaurant_address}}</p>
-        <iframe src="{{map_url}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
+        {% if restaurant_address %}
+            <p><strong>{{restaurant_address.name}}</strong></p>
+            <p>{{restaurant_address.address}}</p>
+            {% if restaurant_address.phone %}
+                <p><strong>Phone : </strong>{{restaurant_address.phone}}</p>
+            {% endif %}
+        {% else %}
+            <p>Address not available</p>
+        {% endif %}
+        {% if map_url %}
+            <iframe src="{{map_url}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        {% endif %}
     </section>
 </section>
 {% endblock %}
