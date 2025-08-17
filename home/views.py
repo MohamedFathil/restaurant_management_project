@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Feedback, Contact
+from .models import Feedback, Contact, RestaurantAddress
 from django.utils.timezone import now
 
 def home(request):
