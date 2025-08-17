@@ -17,7 +17,8 @@ def home(request):
             'restaurant_phone': settings.RESTAURANT_PHONE_NUMBER,
             'current_year':now().year,
             'menu_items':menu_items,
-            'restaurant_address': address
+            'restaurant_address': address,
+            # "map_url":map_url
         }
         return render(request, 'home.html', context)
     except Exception as e:
