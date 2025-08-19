@@ -12,8 +12,15 @@
     {% if menu_items %}
         <ul class="menu-list">
             {% for item in menu_items %}
-                <li class="menu-item">{{item.name}}</li>
-                <li class="menu-item">{{item.price}}</li>
+                <li class="menu-item">
+                    {% if item.image %}
+                        <img src="{{item.image.url}}" alt="{{item.name}}" class="menu-item-img" >
+                    {% endif %}
+                </li> 
+                <div class="menu-item-details">
+                    <strong>{{item.name}}</strong> - {{item.price}}
+                    <p>{{item.description}}</p>
+                </div>
             {% endfor %}
         </ul>
     {% else %}
