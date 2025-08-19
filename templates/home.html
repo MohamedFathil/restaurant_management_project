@@ -43,7 +43,7 @@
         <h3>Visit us</h3>
         {% if restaurant_address %}
             <p><strong>{{restaurant_address.name}}</strong></p>
-            <p>{{restaurant_address.address}}</p>
+            <p>{{ restaurant_address.address }}</p>
             {% if restaurant_address.phone %}
                 <p><strong>Phone : </strong>{{restaurant_address.phone}}</p>
             {% endif %}
