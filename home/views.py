@@ -19,6 +19,7 @@ def home(request):
             'current_year':now().year,
             'menu_items':menu_items,
             'restaurant_address': address,
+            'opening_hours':address.opening_hours if address else {},
             # "map_url":map_url
         }
         return render(request, 'home.html', context)
