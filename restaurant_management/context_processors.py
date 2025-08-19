@@ -1,4 +1,5 @@
 from django.conf import settings
+from account.models from RestaurantAddress
 
 def restaurant_info(request):
     return {
