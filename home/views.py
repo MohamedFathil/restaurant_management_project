@@ -12,6 +12,7 @@ def home(request):
         response = requests.get(api_url, timeout=5)
         response.raise_for_status()
         menu_items = response.json()
+        address = RestaurantAddress.objects.first()
         context = {
             'restaurant_name':settings.RESTAURANT_NAME,
             'restaurant_phone': settings.RESTAURANT_PHONE_NUMBER,
