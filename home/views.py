@@ -50,8 +50,9 @@ def contact(request):
                     'error':'Please fill out all fields.'
                 }
                 return render(request, 'contact.html', context)
+                
             # contact entry
-                Contact.objects.create(name=name, email=email, message=message)
+            Contact.objects.create(name=name, email=email, message=message)
 
             # send email notification
             try:
