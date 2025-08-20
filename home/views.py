@@ -9,10 +9,18 @@ from django.core.mail import send_mail
 def home(request):
     try:
         # Fetch menu data from API
-        api_url = f"(settings.SITE_URL}/api/menu"
+        api_url = f"{settings.SITE_URL}/api/menu"
         response = requests.get(api_url, timeout=5)
         response.raise_for_status()
         menu_items = response.json()
+        # handle search
+        query = request.GET.get("q","").strip()
+        if query:
+            menu_items = [
+                item for item in menu_items
+                if query.lower() in item['name'].lower()
+            ]
+
         address = RestaurantAddress.objects.first()
         context = {
             'restaurant_name':settings.RESTAURANT_NAME,
@@ -21,6 +29,7 @@ def home(request):
             'menu_items':menu_items,
             'restaurant_address': address,
             'opening_hours':address.opening_hours if address else {},
+            'query':query,  
             # "map_url":map_url
         }
         return render(request, 'home.html', context)
