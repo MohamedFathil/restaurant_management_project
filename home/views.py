@@ -1,10 +1,11 @@
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
 from .models import Feedback, Contact, RestaurantAddress
 from django.utils.timezone import now
 from django.core.mail import send_mail
+from .forms import ContactForm
 
 def home(request):
     try:
@@ -80,6 +81,17 @@ def contact(request):
         print(f"Error im contact view : {e}")
         return HttpResponse("Oops! Something went wrong while loading the contact page.",status=500)
 
+def contact_view(self):
+    """It is to save data to Contact Model"""
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contact')
+    else:
+        form = ContactForm()
+    return render(request, "contact.html", {"form":form})
+
 def reservations(request):
     """Render the reservation page"""
     return render(request, 'reservations.html')
@@ -96,3 +108,4 @@ def feedback_view(request):
     except Exception as e:
         return render(request, "feedback.html",{"error":f"An error occured: {str(e)}"})
     return render(request, "feedback.html")
+
