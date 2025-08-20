@@ -27,6 +27,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+RESTAURANT_EMAIL = "bitethebite@gmail.com"
+
 RESTAURANT_NAME = "Bite the Bite"
 RESTAURANT_PHONE_NUMBER = "+91 9876543210"
 RESTAURANT_OPENING_HOURS = "Mon-Fri: 11am - 9pm, Sat-Sun: 10am - 10pm"
