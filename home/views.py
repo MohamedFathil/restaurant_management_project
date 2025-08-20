@@ -81,17 +81,6 @@ def contact(request):
         print(f"Error im contact view : {e}")
         return HttpResponse("Oops! Something went wrong while loading the contact page.",status=500)
 
-def contact_view(self):
-    """It is to save data to Contact Model"""
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('contact')
-    else:
-        form = ContactForm()
-    return render(request, "contact.html", {"form":form})
-
 def reservations(request):
     """Render the reservation page"""
     return render(request, 'reservations.html')
