@@ -10,7 +10,7 @@
 <section class="home-section">
     <!-- logo -->
     {% if restaurant and restaurant.logo %}
-        <img src="{ restaurant.logo.url }" alt="Restaurant Logo" class="restaurant-logo">
+        <img src="{{restaurant.logo.url}}" alt="Restaurant Logo" class="restaurant-logo">
     {% else %}
         <img src="{% static 'images/logo.png' %}" alt="Default Logo" class="restaurant-logo">
     {% endif %}
@@ -20,7 +20,7 @@
 
     <!-- Search Bar -->
     <form method="get" action="" class="search-form">
-        <input type="text" name="q" placeholder="Search menu items..." value="{request.GET.q}" class="search-input">
+        <input type="text" name="q" placeholder="Search menu items..." value="{{request.GET.q}}" class="search-input">
         <button type="submit" class="search-button">Search</button>
     </form>
 
@@ -33,7 +33,7 @@
         <h3>Our Menu</h3>
         {% if query %}
             <p>Showing result for : <strong>{{query}}</strong></p>
-            {% if not menu-items %}
+            {% if not menu_items %}
                 <p>No menu item found for the "{{query}}"</p>
             {% endif %}
         {% endif %}
@@ -59,6 +59,8 @@
             <p>{{ restaurant_address.address }}</p>
             {% if restaurant_address.phone %}
                 <p><strong>Phone : </strong>{{restaurant_address.phone}}</p>
+            {% else %}
+                <p><strong>Phone : </strong>{{restaurant_phone}}</p>
             {% endif %}
         {% else %}
             <p>Address not available</p>
