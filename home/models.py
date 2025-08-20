@@ -10,6 +10,7 @@ class Feedback(models.Model):
 class Contact(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()
+    message = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_add_now=True)
 
     def __str__(self):
