@@ -33,3 +33,11 @@ class RestaurantLocation(models.Model):
 
     def __str__(self):
         return f"{self.address}, {self.city}, {self.state}, {self.zip_code}"
+
+# for setup logo
+class Restaurant(models.Model):
+    name=models.CharField(max_length=100)
+    logo = models.ImageField(upload_to="restaurant_logos/", blank=True, null=True)
+
+    def __str__(self):
+        return self.name
