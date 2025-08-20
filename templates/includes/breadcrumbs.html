@@ -1,0 +1,20 @@
+<nav aria-label="breadcrumb" style="margin:15px 0;">
+    <ol class="breadcrumb" style="background: none; padding-left: 0; list-style:none;">
+        <li class="breadcrumb-item" style="display: inline;">
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        {% if breadcrumb %}
+            {% for crumb in breadcrumb %}
+                {% if forloop.last %}
+                    <li class="breadcrumb-list active" aria-current="page" style="display: inline; color: #666; font-weight: bold;">
+                        &nbsp;>&nbsp;{{crumb.name}}
+                    </li>
+                {% else %}
+                    <li class="breadcrumb-item" style="display: inline;">
+                        &nbsp;>&nbsp;<a href="{{crumb.url}}">{{crumb.name}}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </ol>
+</nav>
