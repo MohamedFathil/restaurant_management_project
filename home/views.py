@@ -4,6 +4,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from .models import Feedback, Contact, RestaurantAddress
 from django.utils.timezone import now
+from django.core.mail import send_mail
 
 def home(request):
     try:
@@ -32,14 +33,28 @@ def contact(request):
         if request.method == 'POST':
             name = request.POST.get('name','').strip()
             email = request.POST.get('email','').strip()
-            if not name or not email:
+            message = request.POST.get('message','').strip()
+            if not name or not email or not message:
                 context = {
                     'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
                     'current_year':now().year,
                     'error':'Please fill out all fields.'
                 }
                 return render(request, 'contact.html', context)
-            Contact.objects.create(name=name, email=email)
+            # contact entry
+                Contact.objects.create(name=name, email=email, message=message)
+
+            # send email notification
+            try:
+                send_mail(
+                    subject=f"New contact form submission from {name}",
+                    message=message,
+                    from_email=email,
+                    recipient_list = [settings.RESTAURANT_EMAIL],
+                    fail_silently = False,
+                )
+            except Exception as mail_error:
+                print(f"Email send error : {mail_error}")
             context = {
                 'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
                 'current_year':now().year,
