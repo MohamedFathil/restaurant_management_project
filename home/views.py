@@ -28,7 +28,6 @@ def home(request):
 
         # Home page, no additional crumbs
         breadcrumb = []
-
         context = {
             'restaurant_name':settings.RESTAURANT_NAME,
             'restaurant_phone': settings.RESTAURANT_PHONE_NUMBER,
@@ -56,7 +55,8 @@ def contact(request):
                 context = {
                     'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
                     'current_year':now().year,
-                    'error':'Please fill out all fields.'
+                    'error':'Please fill out all fields.',
+                    'breadcrumb':[{'name':'Contact','url': request.path}],
                 }
                 return render(request, 'contact.html', context)
                 
@@ -77,12 +77,14 @@ def contact(request):
             context = {
                 'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
                 'current_year':now().year,
-                'success':'Thank you for contacting us.'
+                'success':'Thank you for contacting us.',
+                'breadcrumb':[{'name':'Contact', 'url':request.path}],
             }
             return render(request, 'contact.html', context)
         context = {
             'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
-            'current_year':now().year
+            'current_year':now().year,
+            'breadcrumb':[{'name':'Contact', 'url':request.path}],
         }
         return render(request, 'contact.html', context)
     except Exception as e:
@@ -91,18 +93,19 @@ def contact(request):
 
 def reservations(request):
     """Render the reservation page"""
-    return render(request, 'reservations.html')
+    breadcrumb = [{'name':'Reservations', 'url': request.path}]
+    return render(request, 'reservations.html', {'breadcrumb':breadcrumb})
 
 def feedback_view(request):
     """Feedback are viewed here"""
     if request.method == "POST":
         comment = request.POST.get('comment', "").strip()
-        return render(request, 'feedback.html', {"error":"Please enter a comment"})
+        return render(request, 'feedback.html', {"error":"Please enter a comment","breadcrumb": [{'name':'Feedback', 'url':request.path}]})
     
     try:
         Feedback.objects.create(comment=comment)
-        return render(request, 'feedback.html', {"success":"Thank you for your feedback"})
+        return render(request, 'feedback.html', {"success":"Thank you for your feedback","breadcrumb": [{'name':'Feedback', 'url': request.path}]})
     except Exception as e:
-        return render(request, "feedback.html",{"error":f"An error occured: {str(e)}"})
-    return render(request, "feedback.html")
+        return render(request, "feedback.html",{"error":f"An error occured: {str(e)}","breadcrumb": [{'name':'Feedback', 'url':request.path}]})
+    return render(request, "feedback.html", {"breadcrumb": [{'name':'Feedback', 'url': request.path}]})
 
