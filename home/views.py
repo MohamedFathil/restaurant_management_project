@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Feedback, Contact, RestaurantAddress
+from .models import Feedback, Contact, RestaurantAddress, Restaurant
 from django.utils.timezone import now
 from django.core.mail import send_mail
 from .forms import ContactForm
@@ -14,6 +14,7 @@ def home(request):
         response = requests.get(api_url, timeout=5)
         response.raise_for_status()
         menu_items = response.json()
+
         # handle search
         query = request.GET.get("q","").strip()
         if query:
@@ -23,6 +24,7 @@ def home(request):
             ]
 
         address = RestaurantAddress.objects.first()
+        restaurant = Restaurant.objects.first()
         context = {
             'restaurant_name':settings.RESTAURANT_NAME,
             'restaurant_phone': settings.RESTAURANT_PHONE_NUMBER,
@@ -30,7 +32,8 @@ def home(request):
             'menu_items':menu_items,
             'restaurant_address': address,
             'opening_hours':address.opening_hours if address else {},
-            'query':query,  
+            'query':query,
+            'restaurant':restaurant,
             # "map_url":map_url
         }
         return render(request, 'home.html', context)
