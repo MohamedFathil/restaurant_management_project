@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 RESTAURANT_EMAIL = "bitethebite@gmail.com"
+EMAIL_PORT = 587
 
 RESTAURANT_NAME = "Bite the Bite"
 RESTAURANT_PHONE_NUMBER = "+91 9876543210"
