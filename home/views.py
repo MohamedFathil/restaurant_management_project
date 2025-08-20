@@ -25,6 +25,10 @@ def home(request):
 
         address = RestaurantAddress.objects.first()
         restaurant = Restaurant.objects.first()
+
+        # Home page, no additional crumbs
+        breadcrumb = []
+
         context = {
             'restaurant_name':settings.RESTAURANT_NAME,
             'restaurant_phone': settings.RESTAURANT_PHONE_NUMBER,
@@ -34,6 +38,7 @@ def home(request):
             'opening_hours':address.opening_hours if address else {},
             'query':query,
             'restaurant':restaurant,
+            'breadcrumb':breadcrumb,
             # "map_url":map_url
         }
         return render(request, 'home.html', context)
