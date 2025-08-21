@@ -18,6 +18,12 @@
     <h2>Welcome to {{ restaurant_name }}</h2>
     <p class="tagline">A journey back in time with every bite - familiar aromas, comforting flavors and memories that never fade.</p>
 
+    <!-- Current Date and Time -->
+    <div class="date-time">
+        <p>Date : {% now "l, d F Y" %}</p>
+        <p>Time : {% now "h:i A" %}</p>
+    </div>
+
     <!-- Search Bar -->
     <form method="get" action="" class="search-form">
         <input type="text" name="q" placeholder="Search menu items..." value="{{request.GET.q}}" class="search-input">
