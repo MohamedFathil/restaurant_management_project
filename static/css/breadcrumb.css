@@ -1,0 +1,41 @@
+/* Breadcrumb Navigation styling */
+nav[aria-label="breadcrumb"]{
+    margin: 15px 0;
+    font-family: Arial, sans-serif;
+}
+nav[aria-label="breadcrumb"] ol{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 16px;
+    color: #588;
+}
+/* breadcrumb list and item styling */
+.breadcrumb-item,
+.breadcrumb-list{
+    display: inline-flex;
+    align-items: center;
+}
+/* Link styling */
+.breadcrumb-item a{
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+/* hover effect on link */
+.breadcrumb-item a:hover{
+    color: #0056b3;
+    text-decoration: underline;
+}
+.breadcrumb-item.active{
+    color: #666;
+    font-weight: bold;
+}
+/* Seperator Styling */
+.breadcrumb-item::after,
+.breadcrumb-item::after{
+    content: "";
+}
