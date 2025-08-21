@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Privacy Policy - {{restaurant_name}} {% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/privacy.css' %}">
+{% endblock %}
+{% block content %}
+<section class="privacy-section">
+    {% include 'includes/breadcrumbs.html' %}
+    <h2>Privacy Policy</h2>
+    <p>Your privacy is important to us. This privacy policy explains how we collect, use and protect your personal details</p>
+
+    <h3>Information we collect</h3>
+    <p>We collect basic information such as your name, email and phone number where you interact with services.</p>
+
+    <h3>How we use your information</h3>
+    <p>We use your Information to provide better services, improve user experience and communicate important updates.</p>
+
+    <h3>Data Security</h3>
+    <p>We implement industry-standard security measures to protect your data from unauthorized access.</p>
+
+    <h3>Contact Us</h3>
+    <p>If you have any questions about this Privacy Policy, please contact us.</p>
+</section>
+{% endblock %}
