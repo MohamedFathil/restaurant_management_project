@@ -117,3 +117,23 @@ body{
     margin-bottom: 15px;
     text-align: center;
 }
+/* breadcrumb styling */
+.breadcrumb{
+    display: flex;
+    gap: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.breadcrumb a{
+    color: #007bff;
+    text-decoration: none;
+    transform: color 0.3s ease;
+}
+/* hover effect */
+.breadcrumb a:hover{
+    color: #0056b3;
+}
+.breadcrumb span{
+    color: #519;
+}
