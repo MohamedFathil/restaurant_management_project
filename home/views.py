@@ -113,3 +113,17 @@ def feedback_view(request):
 def faq_view(request):
     breadcrumb = [{'name':'FAQ', 'url':request.path}]
     return render(request, 'faq.html', {'breadcrumb':breadcrumb})
+
+def about_view(request):
+    breadcrumb = [{'name':'about', 'url':request.path}]
+    restaurant = Restaurant.objects.first()
+
+    context = {
+        'restaunrant': restaurant,
+        'restaurant_name': restaunrant.name if restaunrant else '',
+        'restaurant_phone': restaunrant.phone if restaunrant else '',
+        'current_year': now().year,
+        'breadcrumb':breadcrumb,
+    }
+    return render(request, 'about.html', context)
+    
