@@ -109,3 +109,6 @@ def feedback_view(request):
         return render(request, "feedback.html",{"error":f"An error occured: {str(e)}","breadcrumb": [{'name':'Feedback', 'url':request.path}]})
     return render(request, "feedback.html", {"breadcrumb": [{'name':'Feedback', 'url': request.path}]})
 
+def faq_view(request):
+    breadcrumb = [{'name':'FAQ', 'url':request.path}]
+    return render(request, 'faq.html', {'breadcrumb':breadcrumb})
