@@ -21,7 +21,7 @@
     <!-- Current Date and Time -->
     <div class="date-time">
         <p>Date : {% now "l, d F Y" %}</p>
-        <p>Time : {% now "h:i A" %}</p>
+        <p>Time : <span id="current-time"></span></p>
     </div>
 
     <!-- Search Bar -->
@@ -77,4 +77,13 @@
         {% endif %}
     </section>
 </section>
+<script>
+    function updateTime(){
+        const now = new Date();
+        const option = {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: True};
+        document.getElementById('current-time').textContent = now.toLocateTimeString('en-US', option);
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+</script>
 {% endblock %}
