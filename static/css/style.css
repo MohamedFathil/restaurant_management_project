@@ -42,6 +42,26 @@ body{
     color: #f39c12;
     text-decoration: underline;
 }
+/* Cart item styling */
+.cart-info{
+    margin-left: 20px;
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+.cart-info a{
+    color: #fff;
+    text-decoration: none;
+}
+.cart-info:hover{
+    background-color: #e65c50;
+}
 /* Content */
 .content{
     padding: 40px 20px;
