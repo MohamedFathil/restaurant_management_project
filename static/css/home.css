@@ -44,6 +44,17 @@
     background-color: #0056b3;
     transform: scale(1.05);
 }
+/* Date time styling */
+.date-time{
+    margin: 15px 0;
+    font-size: 16px;
+    color: #333;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
 /* Search style */
 .search-form{
     margin: 20px 0;
