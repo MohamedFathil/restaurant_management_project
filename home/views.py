@@ -50,48 +50,42 @@ def home(request):
         return HttpResponse("Oops! Something went wrong while loading the home page.", status=500)
 
 def contact(request):
+    """Contact view of the restaurant"""
     try:
-        restaurant = Restaurant.objects.first()
+        restaunrant = Restaurant.objects.first()
+        breadcrumb = [{'name':'contact', 'url':request.path}]
         if request.method == 'POST':
-            name = request.POST.get('name','').strip()
-            email = request.POST.get('email','').strip()
-            message = request.POST.get('message','').strip()
-            if not name or not email or not message:
+            form = ContactForm(request.POST)
+            if form.is_valid():
+                contact = form.save()
+
+                # send email notification
+                try:
+                    send_mail(
+                        subject=f"New contact form submission from {contact.name}",
+                        message=contact.message,
+                        from_email=contact.email,
+                        recipient_list = [settings.RESTAURANT_EMAIL],
+                        fail_silently = False,
+                    )
+                except Exception as mail_error:
+                    print(f"Email send error : {mail_error}")
                 context = {
                     'restaurant_phone':restaurant.phone if restaurant else None,
                     'current_year':now().year,
-                    'error':'Please fill out all fields.',
-                    'breadcrumb':[{'name':'Contact','url': request.path}],
+                    'success':'Thank you for contacting us.',
+                    'breadcrumb':breadcrumb,
                 }
                 return render(request, 'contact.html', context)
-                
-            # contact entry
-            Contact.objects.create(name=name, email=email, message=message)
-
-            # send email notification
-            try:
-                send_mail(
-                    subject=f"New contact form submission from {name}",
-                    message=message,
-                    from_email=email,
-                    recipient_list = [settings.RESTAURANT_EMAIL],
-                    fail_silently = False,
-                )
-            except Exception as mail_error:
-                print(f"Email send error : {mail_error}")
+        else:
+            form = ContactForm()
             context = {
+                'form':form,
                 'restaurant_phone':restaurant.phone if restaurant else None,
                 'current_year':now().year,
-                'success':'Thank you for contacting us.',
-                'breadcrumb':[{'name':'Contact', 'url':request.path}],
+                'breadcrumb':breadcrumb,
             }
             return render(request, 'contact.html', context)
-        context = {
-            'restaurant_phone':restaurant.phone if restaurant else None,
-            'current_year':now().year,
-            'breadcrumb':[{'name':'Contact', 'url':request.path}],
-        }
-        return render(request, 'contact.html', context)
     except Exception as e:
         print(f"Error im contact view : {e}")
         return HttpResponse("Oops! Something went wrong while loading the contact page.",status=500)
@@ -115,6 +109,7 @@ def feedback_view(request):
     return render(request, "feedback.html", {"breadcrumb": [{'name':'Feedback', 'url': request.path}]})
 
 def faq_view(request):
+    """Rendering FAQ page"""
     breadcrumb = [{'name':'FAQ', 'url':request.path}]
     return render(request, 'faq.html', {'breadcrumb':breadcrumb})
 
