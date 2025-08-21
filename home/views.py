@@ -129,6 +129,7 @@ def about_view(request):
     return render(request, 'about.html', context)
     
 def add_to_cart(request, item_id):
+    """Cart Items"""
     cart = request.session.get('cart',{})
     
     if str(item_id) in cart:
