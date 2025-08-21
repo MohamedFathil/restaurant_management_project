@@ -26,6 +26,10 @@ def home(request):
         address = RestaurantAddress.objects.first()
         restaurant = Restaurant.objects.first()
 
+        # get cart info
+        cart = request.session.get('cart',{})
+        cart_item_count = sum(cart.values())
+
         # Home page, no additional crumbs
         breadcrumb = []
         context = {
