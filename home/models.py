@@ -37,6 +37,7 @@ class RestaurantLocation(models.Model):
 # for setup logo
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=15, null=True, blank=True)
     logo = models.ImageField(upload_to="restaurant_logos/", blank=True, null=True)
 
     def __str__(self):
