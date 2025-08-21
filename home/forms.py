@@ -1,7 +1,20 @@
 from django import forms
 from .models import Contact
+from django.core.validators import validate_email
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['name','email','message']
+    
+    def clean_email(self):
+        email = self.cleaned_data('email')
+        validate_email(email)
+        return email
+    
+    def clean_message(self):
+        message = self.cleaned_data('message')
+        if len(message) < 10:
+            raise forms.ValidationError("Message must be at least 10 character long. ")
+        return message
+
