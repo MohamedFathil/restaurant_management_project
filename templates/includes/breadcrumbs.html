@@ -6,7 +6,7 @@
         {% if breadcrumb %}
             {% for crumb in breadcrumb %}
                 {% if forloop.last %}
-                    <li class="breadcrumb-list active" aria-current="page" >
+                    <li class="breadcrumb-list-active" aria-current="page" >
                         &nbsp;>&nbsp;{{crumb.name}}
                     </li>
                 {% else %}
