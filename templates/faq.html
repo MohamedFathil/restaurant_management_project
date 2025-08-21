@@ -2,8 +2,63 @@
 
 {% block title %}FAQ - Restaurant Management {% endblock %}
 
-{% block breadcrumb %}
+{% block extra_css %}
+<style>
+    .faq-section{
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        backdround: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .faq-section h2{
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2rem;
+    }
+    .faq-item{
+        margin-bottom: 15px;
+    }
+    .faq-item h4{
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    .faq-item p{
+        color: #555;
+        margin-left: 10px;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
+<section class="faq-section">
+    <h2>Frequently Asked Question</h2>
 
+    <div class="faq-item">
+        <h4>What are your opening hours?</h4>
+        <p>We are open from 10:00 AM to 10:00 PM, Seven days a week.</p>
+    </div>
+
+    <div class="faq-item">
+        <h4>Do you offer home delivery?</h4>
+        <p>Yes, We offer free home delivery within 5 km radius.</p>
+    </div>
+
+    <div class="faq-item">
+        <h4>Can I reserve a table online?</h4>
+        <p>Currently, Reservations can only be made by calling our Restaurant</p>
+    </div>
+
+    <div class="faq-item">
+        <h4>Do you provide a vegetarian nad vegan options?</h4>
+        <p>Yes, we have a wide range of vegetarian and vegan dishes.</p>
+    </div>
+
+    <div class="faq-item">
+        <h4>Do you host private events?</h4>
+        <p>Yes, we provide space for parties and events. Contact us for details</p>
+    </div>
+</section>
 {% endblock %}
