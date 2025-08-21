@@ -80,8 +80,8 @@
 <script>
     function updateTime(){
         const now = new Date();
-        const option = {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: True};
-        document.getElementById('current-time').textContent = now.toLocateTimeString('en-US', option);
+        const option = {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: true};
+        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', option);
     }
     setInterval(updateTime, 1000);
     updateTime();
