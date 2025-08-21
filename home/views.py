@@ -30,7 +30,7 @@ def home(request):
         breadcrumb = []
         context = {
             'restaurant_name':settings.RESTAURANT_NAME,
-            'restaurant_phone': settings.RESTAURANT_PHONE_NUMBER,
+            'restaurant_phone': restaurant.phone if restaurant else None,
             'current_year':now().year,
             'menu_items':menu_items,
             'restaurant_address': address,
@@ -47,13 +47,14 @@ def home(request):
 
 def contact(request):
     try:
+        restaurant = Restaurant.objects.first()
         if request.method == 'POST':
             name = request.POST.get('name','').strip()
             email = request.POST.get('email','').strip()
             message = request.POST.get('message','').strip()
             if not name or not email or not message:
                 context = {
-                    'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
+                    'restaurant_phone':restaurant.phone if restaurant else None,
                     'current_year':now().year,
                     'error':'Please fill out all fields.',
                     'breadcrumb':[{'name':'Contact','url': request.path}],
@@ -75,14 +76,14 @@ def contact(request):
             except Exception as mail_error:
                 print(f"Email send error : {mail_error}")
             context = {
-                'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
+                'restaurant_phone':restaurant.phone if restaurant else None,
                 'current_year':now().year,
                 'success':'Thank you for contacting us.',
                 'breadcrumb':[{'name':'Contact', 'url':request.path}],
             }
             return render(request, 'contact.html', context)
         context = {
-            'restaurant_phone':settings.RESTAURANT_PHONE_NUMBER,
+            'restaurant_phone':restaurant.phone if restaurant else None,
             'current_year':now().year,
             'breadcrumb':[{'name':'Contact', 'url':request.path}],
         }
