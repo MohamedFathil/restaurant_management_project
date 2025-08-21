@@ -115,6 +115,7 @@ def faq_view(request):
     return render(request, 'faq.html', {'breadcrumb':breadcrumb})
 
 def about_view(request):
+    """Information about the restaurant"""
     breadcrumb = [{'name':'about', 'url':request.path}]
     restaurant = Restaurant.objects.first()
 
@@ -127,3 +128,15 @@ def about_view(request):
     }
     return render(request, 'about.html', context)
     
+def add_to_cart(request, item_id):
+    cart = request.session.get('cart',{})
+    
+    if str(item_id) in cart:
+        cart[str(item_id)] += 1
+    else:
+        cart[str(item_id)] = 1
+
+    # Save back to session
+    request.session['cart'] = cart
+
+    return redirect(home)
