@@ -18,3 +18,6 @@ def restaurant_info(request):
         "restaurant_phone": address.phone if address else "",
         "current_year": now().year(),
     }
+
+def breadcrumb_context(request):
+    return {'breadcrumb': request.session.get('breadcrumb',[])}
