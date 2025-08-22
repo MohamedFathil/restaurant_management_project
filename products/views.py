@@ -42,7 +42,7 @@ def menu_page(request):
     """Render menu page with item displayed in html."""
     menu_items = MenuItem.objects.all()
     breadcrumb = [
-        ('Home','/'),
-        ('Menu','/menu/')
+        {'name':'Home','url':'/'},
+        {'name':'Menu', 'url':'/menu/'}
     ]
     return render(request, 'menu.html', {'menu_items':menu_items,'breadcrumb':breadcrumb})
