@@ -44,6 +44,28 @@
     background-color: #0056b3;
     transform: scale(1.05);
 }
+/* Order now container styling */
+.order-now-container{
+    text-align: center;
+    margin: 20px 0;
+}
+.order-now-btn{
+    display: inline-block;
+    background: linear-gradient(45deg, #ff5722, #e91e63);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.order-now-btn:hover{
+    background: linear-gradient(45deg, #e91e63, #ff5722);
+    transform: scale(1.08);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
 /* Date time styling */
 .date-time{
     margin: 15px 0;
@@ -111,5 +133,9 @@
     }
     .retaurants-logo{
         max-width: 150px;
+    }
+    .order-now-btn{
+        font-size: 16px;
+        padding: 10px 20px;
     }
 }
