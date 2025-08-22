@@ -10,7 +10,6 @@ from .serializers import ItemSerializer
 NOTE: Conside this as a reference and follow this same coding structure or format to work on you tasks
 '''
 
-# Create your views here.
 class ItemView(APIView):
 
     def get(self, request):
@@ -42,4 +41,8 @@ class MenuItemView(APIView):
 def menu_page(request): 
     """Render menu page with item displayed in html."""
     menu_items = MenuItem.objects.all()
-    return render(request, 'menu.html', {'menu_items':menu_items})
+    breadcrumb = [
+        ('Home','/'),
+        ('Menu','/menu/')
+    ]
+    return render(request, 'menu.html', {'menu_items':menu_items,'breadcrumb':breadcrumb})
