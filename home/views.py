@@ -6,6 +6,8 @@ from .models import Feedback, Contact, RestaurantAddress, Restaurant
 from django.utils.timezone import now
 from django.core.mail import send_mail
 from .forms import ContactForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 def home(request):
     try:
@@ -48,6 +50,22 @@ def home(request):
     except Exception as e:
         print(f"Error in home view : {e}")
         return HttpResponse("Oops! Something went wrong while loading the home page.", status=500)
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, "Invalid username or password")
+    return redirect('home')
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')
 
 def contact(request):
     """Contact view of the restaurant"""
