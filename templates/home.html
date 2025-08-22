@@ -16,8 +16,14 @@
     {% endif %}
 
     <h2>Welcome to {{ restaurant_name }}</h2>
+    <!-- Tagline -->
     <p class="tagline">A journey back in time with every bite - familiar aromas, comforting flavors and memories that never fade.</p>
 
+    <!-- Order Now button -->
+    <div class="order-now-container">
+        <a href="{% url 'order_page' %}" class="order-now-btn">Order Now</a>
+    </div>
+    
     <!-- Current Date and Time -->
     <div class="date-time">
         <p>Date : {% now "l, d F Y" %}</p>
