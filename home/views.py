@@ -2,7 +2,7 @@ import requests
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Feedback, Contact, RestaurantAddress, Restaurant
+from .models import Feedback, Contact, RestaurantAddress, Restaurant, TodaysSpecial
 from django.utils.timezone import now
 from django.core.mail import send_mail
 from .forms import ContactForm
@@ -32,6 +32,9 @@ def home(request):
         cart = request.session.get('cart',{})
         cart_item_count = sum(cart.values())
 
+        # today special
+        specials = TodaysSpecial.objects.all()
+
         # Home page, no additional crumbs
         breadcrumb = []
         context = {
@@ -44,6 +47,7 @@ def home(request):
             'query':query,
             'restaurant':restaurant,
             'breadcrumb':breadcrumb,
+            'specials':specials,
             # "map_url":map_url
         }
         return render(request, 'home.html', context)
