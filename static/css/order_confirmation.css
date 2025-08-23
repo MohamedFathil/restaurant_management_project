@@ -1,0 +1,37 @@
+/* Order Confirmation style */
+.container{
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+h2{
+    color: #28a745;
+    margin-bottom: 15px;
+}
+p{
+    font-size: 18px;
+    margin: 10px 0;
+}
+strong{
+    color: #333;
+}
+/* button style */
+.btn{
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+/* hover effect */
+.btn:hover{
+    background-color: #0056b3;
+}
