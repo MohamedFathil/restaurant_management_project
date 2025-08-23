@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %} Order Cofirmation - Restaurant Management  {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/order_confirmation.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
     {% include 'includes/breadcrumbs.html' %}
