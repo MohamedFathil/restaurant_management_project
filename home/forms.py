@@ -18,3 +18,6 @@ class ContactForm(forms.ModelForm):
             raise forms.ValidationError("Message must be at least 10 character long. ")
         return message
 
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = 
