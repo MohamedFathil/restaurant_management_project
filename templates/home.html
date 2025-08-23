@@ -64,6 +64,25 @@
             <p>No menu items available</p>
         {% endif %}
     </section>
+
+    <!-- Todays Special -->
+    <section class="special-section">
+        <h3>Today's Special</h3>
+        {% if specials %}
+            <ul class="special-list">
+                {% for item in specials %}
+                    <li class="special-item">
+                        <strong>{{item.name}}</strong> - {{item.price}} <br>
+                        <em>{{item.description}}</em>
+                        <a href="{% url 'add_to_cart' item.id %}" class="btn">Add to cart</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No specials available today.</p>
+        {% endif %}
+    </section>
+
     <!-- Location Address setup -->
     <section class="location-address">
         <h3>Visit us</h3>
