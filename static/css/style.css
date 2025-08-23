@@ -6,6 +6,8 @@
 }
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('/static/images/homepage.png') no-repeat center center fixed;
+    background-size: cover;
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
