@@ -12,6 +12,10 @@
     <h2>About us</h2>
     <p>We are passionare about serving fresh meals and creating delightful dining experience.</p>
     <p>Our mission is to bring you the best of local and international cuisine in a cozy, welcoming atmosphere.</p>
-    <img src="{% static 'images/restaurant.jpg' %}" alt="Our Restaurant" class="about-image">
+    {% if reataurant_image %}
+        <img src="{{reataurant_image}}" alt="Our Restaurant" class="about-image">
+    {% else %}
+        <p>No image available.</p>
+    {% endif %}
 </section>
 {% endblock %}
