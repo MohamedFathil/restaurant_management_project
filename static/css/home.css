@@ -28,6 +28,65 @@
     line-height: 1.6;
     color: #555;
 }
+/* Today special styles */
+.special-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: #fff4e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.special-section h3{
+    color: #e67e22;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e67e22;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+/* special list styles */
+.special-list{
+    list-style: none;
+    padding: 0;
+}
+/* special item styles */
+.special-item{
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-left: 4px solif #e67e22;
+    background: #fff9f2;
+    border-radius: 8px;
+    transition: tranform 0.2s, box-shadow 0.2s;
+}
+.special-item:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.special-item strong{
+    font-size: 1.2rem;
+    color: #d35400;
+}
+.special-item em{
+    display: block;
+    font-style: italic;
+    color: #7f8c8d;
+    margin: 5px 0;
+}
+/* special item button styles */
+.special-item .btn{
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 14px;
+    background-color: #e67e22;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+.special-item .btn:hover{
+    background-color: #d35400;
+}
 /* Button Styling */
 .home-section a{
     display: inline-block;
