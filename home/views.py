@@ -144,7 +144,7 @@ def about_view(request):
         'restaurant': restaurant,
         'restaurant_name': restaurant.name if restaurant else '',
         'restaurant_phone': restaurant.phone if restaurant else '',
-        'restaurant_image':restaurant.logo.url if restaurant else '',
+        'restaurant_image':restaurant.image.url if restaurant else '',
         'current_year': now().year,
         'breadcrumb':breadcrumb,
     }
