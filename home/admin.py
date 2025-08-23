@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, RestaurantAddress, Restaurant
+from .models import Contact, RestaurantAddress, Restaurant, TodaysSpecial
 
 # registering models
 @admin.register(Contact)
@@ -8,3 +8,4 @@ class ContactAdmin(admin.ModelAdmin):
     
 admin.site.register(RestaurantAddress)
 admin.site.register(Restaurant)
+admin.site.register(TodaysSpecial)
