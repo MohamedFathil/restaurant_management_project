@@ -115,17 +115,21 @@ def reservations(request):
 
 def feedback_view(request):
     """Feedback are viewed here"""
+    context = {'breadcrumb':[{'name':'Feedback', 'url':request.path}]}
     if request.method == "POST":
-        comment = request.POST.get('comment', "").strip()
-        return render(request, 'feedback.html', {"error":"Please enter a comment","breadcrumb": [{'name':'Feedback', 'url':request.path}]})
+        name = request.POSt.get('name','').strip()
+        feedback = request.POST.get('feedback', "").strip()
+         
+        if not name and not feedback:
+            context['error'] = "Please enter both your name and feedback."
+        else:
+            try:
+                Feedback.objects.create(name=name, feedback=feedback)
+                context['success'] = "Thank you for your feedback!"
+            except Exception as e:
+                context['error'] = f"An error Occurred : {str(e)}"
+    return render(request, "feedback.html", context)
     
-    try:
-        Feedback.objects.create(comment=comment)
-        return render(request, 'feedback.html', {"success":"Thank you for your feedback","breadcrumb": [{'name':'Feedback', 'url': request.path}]})
-    except Exception as e:
-        return render(request, "feedback.html",{"error":f"An error occured: {str(e)}","breadcrumb": [{'name':'Feedback', 'url':request.path}]})
-    return render(request, "feedback.html", {"breadcrumb": [{'name':'Feedback', 'url': request.path}]})
-
 def faq_view(request):
     """Rendering FAQ page"""
     breadcrumb = [{'name':'FAQ', 'url':request.path}]
