@@ -42,3 +42,18 @@ item-name{
     color: #888;
     margin-top: 10px;
 }
+/* button styling */
+.btn-add-cart{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 12px;
+    background-color: #ff6600;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+.btn-add-cart:hover{
+    background-color: #e65c00;
+}
