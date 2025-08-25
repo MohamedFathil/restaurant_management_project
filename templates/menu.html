@@ -19,6 +19,8 @@
                     <div class="menu-item-details">
                         <strong>{{item.name}}</strong> - {{item.price}}
                         <p>{{item.description}}</p>
+
+                        <a href="{% url 'add_to_cart' item.id %}" class="btn-add-cart">Add to Cart</a>
                     </div>
                 </li>
             {% endfor %}
