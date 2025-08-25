@@ -1,4 +1,5 @@
 import requests
+import logging
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
@@ -8,6 +9,9 @@ from django.core.mail import send_mail
 from .forms import ContactForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+# configure logging
+logger = logging.getLogger(__name__)
 
 def home(request):
     try:
@@ -73,11 +77,11 @@ def user_logout(request):
 
 def contact(request):
     """Contact view of the restaurant"""
+    breadcrumb = [{'name':'contact', 'url':request.path}]
     try:
         restaurant = Restaurant.objects.first()
-        breadcrumb = [{'name':'contact', 'url':request.path}]
+        form = ContactForm(request.POST or None)
         if request.method == 'POST':
-            form = ContactForm(request.POST)
             if form.is_valid():
                 contact = form.save()
 
@@ -91,17 +95,15 @@ def contact(request):
                         fail_silently = False,
                     )
                 except Exception as mail_error:
-                    print(f"Email send error : {mail_error}")
-                context = {
-                    'restaurant':restaurant,
-                    'restaurant_phone':restaurant.phone if restaurant else None,
-                    'current_year':now().year,
-                    'success':'Thank you for contacting us.',
-                    'breadcrumb':breadcrumb,
-                }
-                return render(request, 'contact.html', context)
-        else:
-            form = ContactForm()
+                    logger.error(f"Email send error : {mail_error}")
+                    context = {
+                        'restaurant':restaurant,
+                        'restaurant_phone':restaurant.phone if restaurant else None,
+                        'current_year':now().year,
+                        'success':'Thank you for contacting us.',
+                        'breadcrumb':breadcrumb,
+                    }
+                    return render(request, 'contact.html', context)
         context = {
             'form':form,
             'restaurant':restaurant,
@@ -111,7 +113,7 @@ def contact(request):
         }
         return render(request, 'contact.html', context)
     except Exception as e:
-        print(f"Error im contact view : {e}")
+        logger.exception(f"Error im contact view : {e}")
         return HttpResponse("Oops! Something went wrong while loading the contact page.",status=500)
 
 def reservations(request):
