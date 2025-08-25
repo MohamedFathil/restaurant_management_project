@@ -74,7 +74,7 @@ def user_logout(request):
 def contact(request):
     """Contact view of the restaurant"""
     try:
-        restaunrant = Restaurant.objects.first()
+        restaurant = Restaurant.objects.first()
         breadcrumb = [{'name':'contact', 'url':request.path}]
         if request.method == 'POST':
             form = ContactForm(request.POST)
@@ -93,6 +93,7 @@ def contact(request):
                 except Exception as mail_error:
                     print(f"Email send error : {mail_error}")
                 context = {
+                    'restaurant':restaurant,
                     'restaurant_phone':restaurant.phone if restaurant else None,
                     'current_year':now().year,
                     'success':'Thank you for contacting us.',
@@ -101,13 +102,14 @@ def contact(request):
                 return render(request, 'contact.html', context)
         else:
             form = ContactForm()
-            context = {
-                'form':form,
-                'restaurant_phone':restaurant.phone if restaurant else None,
-                'current_year':now().year,
-                'breadcrumb':breadcrumb,
-            }
-            return render(request, 'contact.html', context)
+        context = {
+            'form':form,
+            'restaurant':restaurant,
+            'restaurant_phone':restaurant.phone if restaurant else None,
+            'current_year':now().year,
+            'breadcrumb':breadcrumb,
+        }
+        return render(request, 'contact.html', context)
     except Exception as e:
         print(f"Error im contact view : {e}")
         return HttpResponse("Oops! Something went wrong while loading the contact page.",status=500)
