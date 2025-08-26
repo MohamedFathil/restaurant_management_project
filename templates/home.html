@@ -107,6 +107,18 @@
             </iframe>
         {% endif %}
     </section>
+    <section class="opening-hours">
+        <h3>Opening Hours</h3>
+        {% if opening_hours %}
+            <ul>
+                {% for day, hours in opening_hours.items %}
+                    <li><strong>{{day}}: </strong>{{hours}}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Opening Hours not available</p>
+        {% endif %}
+    </section>
 </section>
 <script>
     function updateTime(){
