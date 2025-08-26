@@ -106,7 +106,7 @@ def contact(request):
                     'success':'Thank you for contacting us.',
                     'breadcrumb':breadcrumb,
                 }
-                return render(request, 'contact.html', context)
+                return redirect('thank_you')
         context = {
             'form':form,
             'restaurant':restaurant,
