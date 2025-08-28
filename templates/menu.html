@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load menu_filters %} 
 
 {% block title %} Menu - Restaurant Management {% endblock %}
 
@@ -18,9 +20,17 @@
                     {% endif %}
                     <div class="menu-item-details">
                         <strong>{{item.name}}</strong> - {{item.price}}
+                        <!-- Availability using custom filters -->
+                        <span class="availability">{{item.available|availability_status}}</span>
+
                         <p>{{item.description}}</p>
 
-                        <a href="{% url 'add_to_cart' item.id %}" class="btn-add-cart">Add to Cart</a>
+                        <!-- Buttom Condition -->
+                        {% if item.available %}
+                            <a href="{% url 'add_to_cart' item.id %}" class="btn-add-cart">Add to Cart</a>
+                        {% else %}
+                            <span class="btn-disable">Coming Soon</span>
+                        {% endif %}
                     </div>
                 </li>
             {% endfor %}
