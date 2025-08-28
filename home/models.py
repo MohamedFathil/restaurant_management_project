@@ -22,6 +22,7 @@ class RestaurantAddress(models.Model):
     address = models.TextField()
     phone = models.CharField(max_length=20, blank=True, null=True)
     opening_hours = models.JSONField(default=dict)
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.name
