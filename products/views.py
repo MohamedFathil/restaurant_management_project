@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.core.paginator import Paginator
 
 from .models import MenuItem
 from .serializers import ItemSerializer
@@ -41,8 +42,11 @@ class MenuItemView(APIView):
 def menu_page(request): 
     """Render menu page with item displayed in html."""
     menu_items = MenuItem.objects.all()
+    paginator = Paginator(menu_items, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     breadcrumb = [
         {'name':'Home','url':'/'},
         {'name':'Menu', 'url':'/menu/'}
     ]
-    return render(request, 'menu.html', {'menu_items':menu_items,'breadcrumb':breadcrumb})
+    return render(request, 'menu.html', {'menu_items':menu_items,'breadcrumb':breadcrumb,'page_obj':page_obj})
