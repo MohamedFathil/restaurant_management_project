@@ -57,6 +57,20 @@ item-name{
 .btn-add-cart:hover{
     background-color: #e65c00;
 }
+/* availabilty */
+.availabilty{
+    display: block;
+    font-size: 14px;
+    margin: 6px 0;
+    font-weight: bold;
+}
+/* Available */
+.availabilty:contains("Avaiable"){
+    color: green;
+}
+.availabilty:contains("Coming Soon"){
+    color: #d9534f;
+}
 /* pagination style */
 .pagination{
     text-align: center;
