@@ -7,6 +7,13 @@
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
+/* title style */
+.cart-section h2{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #333;
+}
 /* table style */
 .cart-table{
     width: 100%;
@@ -38,6 +45,18 @@
 /* summary style */
 .cart-summary{
     text-align: right;
+}
+/* checkout button */
+.checkout-btn{
+    display: inline-block;
+    padding: 10px 20px;
+    background: #27ae60;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background 0.3s;
 }
 /* checkout button style */
 .checkout-btn:hover{
