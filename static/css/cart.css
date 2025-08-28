@@ -1,17 +1,11 @@
 /* Cart styling */
-.cart-container{
+.cart-section{
     width: 80%;
     margin: 30px auto;
     padding: 20px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-/* cart title style */
-.cart-title{
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px;
 }
 /* table style */
 .cart-table{
@@ -46,7 +40,7 @@
     text-align: right;
 }
 /* checkout button style */
-.btn-checkout:hover{
+.checkout-btn:hover{
     background: #1e8449;
 }
 .empty-cart{
