@@ -149,7 +149,7 @@ def faq_view(request):
 def about_view(request):
     """Information about the restaurant"""
     breadcrumb = [{'name':'about', 'url':request.path}]
-    restaurant = Restaurant.objects.first()
+    restaurant = RestaurantAddress.objects.first()
 
     context = {
         'restaurant': restaurant,
