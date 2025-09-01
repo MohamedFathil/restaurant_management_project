@@ -4,7 +4,7 @@ import smtplib
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Feedback, Contact, RestaurantAddress, Restaurant, TodaysSpecial
+from .models import Feedback, Contact, RestaurantAddress, Restaurant, TodaysSpecial, Chef
 from django.utils.timezone import now
 from django.core.mail import send_mail
 from .forms import ContactForm
@@ -160,4 +160,9 @@ def about_view(request):
         'breadcrumb':breadcrumb,
     }
     return render(request, 'about.html', context)
+    
+def about_chef(request):
+    """About the chef"""
+    chef = Chef.objects.first() # assume that only one chef
+    return render(request, 'about_chef.html', {'chef':chef})
     
