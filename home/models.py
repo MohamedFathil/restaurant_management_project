@@ -54,3 +54,12 @@ class TodaysSpecial(models.Model):
 
     def __str__(self):
         return self.name
+
+# chef info
+class Chef(models.Model):
+    name = models.CharField(max_length=100)
+    bio = models.TextField()
+    image = models.ImageField(upload_to='chef_images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
