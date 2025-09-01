@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} About the Chef {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="chef-container">
+    <h2 class="chef-title">Meet our Chef</h2>
+    {% if chef %}
+        <div class="chef-details">
+            {% if chef.image %}
+                <img src="{{chef.image.url}}" alt="{{chef.name}}" class="chef-image">
+            {% endif %}
+            <div class="chef-info">
+                <h3>{{chef.name}}</h3>
+                <p>{{chef.bio}}</p>
+            </div>
+        </div>
+    {% else %}
+        <p>No chef details available at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}
