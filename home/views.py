@@ -96,16 +96,12 @@ def contact(request):
                         fail_silently = False,
                     )
                 except smtplib.SMTPException as smtp_error:
-                    logger.error(f"SMTP error while sending the email: {smtp_error})
+                    logger.error(f"SMTP error while sending the email: {smtp_error}")
                 except Exception as mail_error:
                     logger.error(f"Email send error : {mail_error}")
-                context = {
-                    'restaurant':restaurant,
-                    'restaurant_phone':restaurant.phone if restaurant else None,
-                    'current_year':now().year,
-                    'success':'Thank you for contacting us.',
-                    'breadcrumb':breadcrumb,
-                }
+                    
+                # Success message for confirmation
+                messages.success(request, f"Thank you {contact.name}, your message has been sent successfully!")
                 return redirect('thank_you')
         context = {
             'form':form,
