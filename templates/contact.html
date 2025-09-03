@@ -30,12 +30,21 @@
 
         <button type="submit">Send Message</button>
     </form>
-    {% if success %}
+    <!-- {% if success %}
         <p class="success">{{success}}</p>
     {% endif %}
     {% if error %}
         <p class="error">{{error}}</p>
+    {% endif %} -->
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {{messages.tags}}">{{message}}</div>
+            {% endfor %}
+        </div> 
     {% endif %}
+
 </section>
 <script>
     document.getElementById("contactForm").addEventListener("submit", function(event){
