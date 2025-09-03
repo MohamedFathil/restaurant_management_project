@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-    <ol>
+    <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="{% url 'home' %}">Home</a>
         </li>
@@ -11,7 +11,7 @@
                     </li>
                 {% else %}
                     <li class="breadcrumb-item">
-                        &nbsp;>&nbsp;<a href="{{crumb.url}}">{{crumb.name}}</a>
+                        &nbsp;&gt;&nbsp;<a href="{{crumb.url}}">{{crumb.name}}</a>
                     </li>
                 {% endif %}
             {% endfor %}
