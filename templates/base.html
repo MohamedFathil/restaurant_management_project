@@ -24,7 +24,7 @@
 
         <!-- Cart item count -->
         <div class="cart-info">
-            <a href="#">Cart ({{cart_   item_count}})</a>
+            <a href="#">Cart ({{cart_item_count|default:"0"}})</a>
         </div>
 
         <!-- Breadcrumb Navigation -->
@@ -37,7 +37,7 @@
 
         <!-- Footer -->
         <footer class="main-footer">
-            <p>&copy; {{restaurant_name}} {{current_year}} | Opening Hours: {{restaurant_opening_hours}}
+            <p>&copy; {{restaurant_name|default:"Restaurant Management"}} {{current_year|default:"2025"}} | Opening Hours: {{restaurant_opening_hours|default:"Not available"}}
             <br>
             <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
             <br>
