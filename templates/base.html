@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
         {% block extra_css %} {% endblock %}
-        <title>{% block title %} Restaurant Management {% endblock %}</title>
+        <title>{% block title %} {{restaurant_name|default:"Restaurant Management"}} {% endblock %}</title>
     </head>
     <body>
         <!-- header -->
