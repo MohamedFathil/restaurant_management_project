@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - Restaurant Management{% endblock %}
+{% block title %}Home - {{restaurant_name|default:"Restaurant Management"}} {% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
