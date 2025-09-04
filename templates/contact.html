@@ -12,9 +12,11 @@
     <h2>Contact Form</h2>
     <p>We had love to hear from you! Reach out to us through the details below: </p>
     <div class="contact-info">
-        <p><strong>Address : </strong>{{restaurant.name}}</p>
-        <p><strong>Phone : </strong> {{restaurant_phone}}</p>
-        <p><strong>Email : </strong> {{ restaurant.address}}</p>
+        <p><strong>Address : </strong>{{restaurant.address|default:"Not available right now."}}</p>
+        <p><strong>Phone : </strong> {{restaurant_phone|default:"Not Available right now."}}</p>
+        <p><strong>Email : </strong>
+            <a href="mailto:info@restaurant.com" class="contact-email">info@restaurant.com</a>
+        </p>
     </div>
 
     <form id="contactForm" method="post">
