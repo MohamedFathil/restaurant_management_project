@@ -4,10 +4,10 @@ import smtplib
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Feedback, Contact, RestaurantAddress, Restaurant, TodaysSpecial, Chef
+from .models import Feedback, Contact, RestaurantAddress, Restaurant, TodaysSpecial, Chef, NewsLetterSubscriber
 from django.utils.timezone import now
 from django.core.mail import send_mail
-from .forms import ContactForm
+from .forms import ContactForm, NewsLetterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 
@@ -161,4 +161,14 @@ def about_chef(request):
     """About the chef"""
     chef = Chef.objects.first() # assume that only one chef
     return render(request, 'about_chef.html', {'chef':chef})
-    
+
+def newsletter_signup(request):
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            NewsLetterSubscriber.objects.get_or_create(email=email)
+            messages.success(request, 'Thank you for subscribing to out newsletter!')
+        else:
+            messages.error(request, 'Please enter a valid email address')
+    return redirect('home')
