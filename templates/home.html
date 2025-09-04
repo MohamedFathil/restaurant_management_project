@@ -10,7 +10,7 @@
 <section class="home-section">
     <!-- logo -->
     {% if restaurant and restaurant.logo %}
-        <img src="{{restaurant.logo.url}}" alt="Restaurant Logo" class="restaurant-logo">
+        <img src="{{restaurant.logo.url}}" alt="{{restaurant.name|default:'Restaurant Logo'}}" class="restaurant-logo">
     {% else %}
         <img src="{% static 'images/logo.png' %}" alt="Default Logo" class="restaurant-logo">
     {% endif %}
