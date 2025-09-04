@@ -125,6 +125,24 @@
         <h3>Want to meet our Chef?</h3>
         <a href="{% url 'about_chef' %}" class="btn-about-chef">Meet the Chef</a>
     </section>
+
+    <!-- News Letter  -->
+    <section class="newsletter-section">
+        <h3>Subscribe to our Newsletter</h3>
+        <p>Get the latest update and offers directly in your inbox.</p>
+        <form method="post" action="{% url 'newsletter_signup' %}">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p class="alert {{message.tags}}">{{message}}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
 </section>
 <script>
     function updateTime(){
