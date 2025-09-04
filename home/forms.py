@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contact, Feedback
+from .models import Contact, Feedback, NewsLetterSubscriber
 from django.core.validators import validate_email
 
 class ContactForm(forms.ModelForm):
@@ -30,4 +30,15 @@ class FeedbackForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control','placeholder':'your name'}),
             'feedback':forms.Textarea(attrs={'class':'form-control', 'placeholder':'your feedback'}),
+        }
+
+class NewsLetterForm(forms.ModelForm):
+    class Meta:
+        model = NewsLetterSubscriber
+        fields = ['email']
+        widgets = {
+            'email':forms.EmailInput(attrs={
+                'placeholder':'Enter your email',
+                'class':'newsletter-input'
+            })
         }
