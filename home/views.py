@@ -124,10 +124,10 @@ def feedback_view(request):
     """Feedback are viewed here"""
     context = {'breadcrumb':[{'name':'Feedback', 'url':request.path}]}
     if request.method == "POST":
-        name = request.POSt.get('name','').strip()
+        name = request.POST.get('name','').strip()
         feedback = request.POST.get('feedback', "").strip()
          
-        if not name and not feedback:
+        if not name or not feedback:
             context['error'] = "Please enter both your name and feedback."
         else:
             try:
