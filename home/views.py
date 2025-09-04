@@ -37,6 +37,9 @@ def home(request):
         cart = request.session.get('cart',{})
         cart_item_count = sum(cart.values())
 
+        # newsletter form
+        newsletter_form = NewsLetterForm
+
         # today special
         specials = TodaysSpecial.objects.all()
 
@@ -53,6 +56,7 @@ def home(request):
             'restaurant':restaurant,
             'breadcrumb':breadcrumb,
             'specials':specials,
+            'newsletter_form':newsletter_form,
             # "map_url":map_url
         }
         return render(request, 'home.html', context)
