@@ -132,7 +132,7 @@
         <p>Get the latest update and offers directly in your inbox.</p>
         <form method="post" action="{% url 'newsletter_signup' %}">
             {% csrf_token %}
-            <input type="email" name="email" placeholder="Enter your email" required>
+            {{ newsletter_form.email}}
             <button type="submit">Subscribe</button>
         </form>
         {% if messages %}
