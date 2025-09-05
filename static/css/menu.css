@@ -137,3 +137,18 @@ p strong{
     color: #ff6347;
     font-weight: bold;
 }
+/* responsive for mobile */
+@media (max-width:480px){
+    .menu-title{
+        font-size: 20px;
+    }
+    .menu-item{
+        font-size: 14px;
+    }
+    .btn-add-cart, .btn-disable{
+        font-size: 14px;
+    }
+    .search-input{
+        width: 90%;
+    }
+}
