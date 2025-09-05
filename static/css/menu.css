@@ -63,12 +63,9 @@ item-name{
     font-size: 14px;
     margin: 6px 0;
     font-weight: bold;
+    color: #28a745;
 }
-/* Available */
-.availabilty:contains("Avaiable"){
-    color: green;
-}
-.availabilty:contains("Coming Soon"){
+.coming-soon{
     color: #d9534f;
 }
 /* pagination style */
