@@ -92,3 +92,42 @@ item-name{
 .pagination a:hover{
     background: #2980b9;
 }
+/* search input style */
+.search-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+/* input field */
+.search-input{
+    width: 250px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+.search-input:focus{
+    border-color: #ff6347;
+    box-shadow: 0 0 8px rgba(255, 99, 71, 0.4);
+}
+/* search button */
+.search-button{
+    background-color: #ff6347;
+    color: wheat;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+.search-button:hover{
+    background-color: #e5533d;
+}
+p strong{
+    color: #ff6347;
+    font-weight: bold;
+}
