@@ -42,11 +42,15 @@ class MenuItemView(APIView):
 def menu_page(request): 
     """Render menu page with item displayed in html."""
     menu_items = MenuItem.objects.all()
+    query = request.GET.get('q','').strip()
     paginator = Paginator(menu_items, 8)
+    if query:
+        menu_items = menu_items.filter(name__icontains=query)
+    
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     breadcrumb = [
         {'name':'Home','url':'/'},
         {'name':'Menu', 'url':'/menu/'}
     ]
-    return render(request, 'menu.html', {'menu_items':menu_items,'breadcrumb':breadcrumb,'page_obj':page_obj})
+    return render(request, 'menu.html', {'menu_items':menu_items,'breadcrumb':breadcrumb,'page_obj':page_obj,'query':query})
