@@ -15,5 +15,6 @@ urlpatterns = [
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('thank-you/', TemplateView.as_view(template_name='thank_you.html'), name='thank_you'),
     path('about-chef/', views.about_chef, name='about_chef'),
-    path('newsletter-signup/',views.newsletter_signup, name='newsletter_signup')
+    path('newsletter-signup/',views.newsletter_signup, name='newsletter_signup'),
+    path('our-story/', views.our_story, name="our_story"),
 ]
