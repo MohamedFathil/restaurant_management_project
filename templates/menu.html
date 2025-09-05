@@ -11,6 +11,15 @@
 {% block content %}
 <div class="menu-container">
     <h2 class="menu-title">Our Menu</h2>
+
+    <!-- Search Bar -->
+    <form method="get" action="" class="search-form">
+        <input type="text" name="q" placeholder="Search menu items..." value="{{query}}" class="search-input">
+        <button type="submit">Search</button>
+    </form>
+    {% if query %}
+        <p>Showing results for : <strong>{{query}}</strong></p>
+    {% endif %}
     {% if menu_items %}
         <ul class="menu-list">
             {% for item in menu_items %}
@@ -39,19 +48,19 @@
         <!-- pagination -->
         <div class="pagination">
             {% if page_obj.has_previous %}
-                <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+                <a href="?q={{query}}&page={{page_obj.previous_page_number}}">Previous</a>
             {% endif %}
 
             {% for num in page_obj.paginator.page_range %}
                 {% if page_obj.number == num %}
                     <span class="active">{{num}}</span>
                 {% else %}
-                    <a href="?page={{num}}">{{num}}</a>
+                    <a href="?q={{query}}&page={{num}}">{{num}}</a>
                 {% endif %}
             {% endfor %}
 
             {% if page_obj.has_next %}
-                <a href=">page={{page_obj.next_page_number}}">Next</a>
+                <a href="?q={{query}}&page={{page_obj.next_page_number}}">Next</a>
             {% endif %}
         </div> 
     {% else %}
