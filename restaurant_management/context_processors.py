@@ -1,5 +1,6 @@
 from django.conf import settings
 from home.models from RestaurantAddress
+from django.utils.timezone import now
 
 def restaurant_info(request):
     """
@@ -16,7 +17,7 @@ def restaurant_info(request):
         "restaurant_opening_hours": opening_hours_str,
         "restaurant_address": address.address if address else "",
         "restaurant_phone": address.phone if address else "",
-        "current_year": now().year(),
+        "current_year": now().year,
     }
 
 def breadcrumb_context(request):
