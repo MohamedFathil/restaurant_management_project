@@ -103,6 +103,22 @@
     background-color: #0056b3;
     transform: scale(1.05);
 }
+/* Reseravation style */
+.btn-reservation{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 18px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+.btn-reservation:hover{
+    background-color: #218838;
+}
 /* Order now container styling */
 .order-now-container{
     text-align: center;
