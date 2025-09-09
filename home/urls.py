@@ -17,4 +17,5 @@ urlpatterns = [
     path('about-chef/', views.about_chef, name='about_chef'),
     path('newsletter-signup/',views.newsletter_signup, name='newsletter_signup'),
     path('our-story/', views.our_story, name="our_story"),
+    path('our-team/', views.our_team, name="our_team"),
 ]
