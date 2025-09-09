@@ -1,0 +1,35 @@
+/* Our team section style */
+.our-team-section{
+    text-align: center;
+    padding: 30px;
+}
+/* team container style */
+.team-container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+/* team member style */
+.team-member{
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 250px;
+    text-align: center;
+}
+.team-img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.team-member h3{
+    margin: 10px 0 5px;
+    font-size: 20px;
+}
+.team-member p{
+    color: #555;
+    font-size: 14px;
+}
