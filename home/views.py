@@ -176,3 +176,7 @@ def newsletter_signup(request):
         else:
             messages.error(request, 'Please enter a valid email address')
     return redirect('home')
+
+def our_team(request):
+    """Render the our team page"""
+    return render(request, 'our_team.html')
