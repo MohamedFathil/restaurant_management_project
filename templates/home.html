@@ -8,6 +8,22 @@
 
 {% block content %}
 <section class="home-section">
+
+    <!-- Image Carousel -->
+    <div class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="{% static 'images/carousel1.jpg' %}" alt="Restaurant Interior">
+            </div>
+            <div class="carousel-slide">
+                <img src="{% static 'images/carousel2.jpg' %}" alt="Delicious Dish">
+            </div>
+            <div class="carousel-slide">
+                <img src="{% static 'images/carousel3.jpg' %}" alt="Happy Customers">
+            </div>
+        </div>
+    </div>
+
     <!-- logo -->
     {% if restaurant and restaurant.logo %}
         <img src="{{restaurant.logo.url}}" alt="{{restaurant.name|default:'Restaurant Logo'}}" class="restaurant-logo">
