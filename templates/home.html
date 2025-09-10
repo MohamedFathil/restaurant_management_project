@@ -175,7 +175,8 @@
     updateTime();
 
     // carousel
-    let slideIndex = 0
+    let slideIndex = 0;
+    let carouselTimer;
     const slides = document.querySelectorAll(".carousel-slide")
 
     function showSlides(){
@@ -185,8 +186,14 @@
             slideIndex = 1;
         }
         slides[slideIndex - 1].style.display = "block";
-        setTimeOut(showSlides, 3000);
+        carouselTimer = setTimeOut(showSlides, 3000);
     }
-    document.addEventListener("DOMContentLoaded", showSlides);
+    document.addEventListener("DOMContentLoaded", () =>{
+        showSlides();
+
+        const carousel = document.querySelector(".carousel");
+        carousel.addEventListener("mouseenter", () => clearTimeout(carouselTimer));
+        carousel.addEventListener("mouseleave", showSlides); // moves
+    });
 </script>
 {% endblock %}
