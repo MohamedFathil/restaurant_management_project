@@ -173,5 +173,20 @@
     }
     setInterval(updateTime, 1000);
     updateTime();
+
+    // carousel
+    let slideIndex = 0
+    const slides = document.querySelectorAll(".carousel-slide")
+
+    function showSlides(){
+        slides.forEach(slide => slides.style.display = 'none');
+        slideIndex ++;
+        if(slideIndex > slides.length){
+            slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeOut(showSlides, 3000);
+    }
+    document.addEventListener("DOMContentLoaded", showSlides);
 </script>
 {% endblock %}
