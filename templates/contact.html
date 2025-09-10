@@ -17,6 +17,7 @@
         <p><strong>Email : </strong>
             <a href="mailto:{{restaurant.email|default:'info@restaurant.com'}}" class="contact-email">{{restaurant.email|default:"info@restaurant.com"}}</a>
         </p>
+        <p><strong>Opening Hours : </strong>{{restaurant_opening_hours|default:"Not Available."}}</p>
     </div>
 
     <form id="contactForm" method="post">
