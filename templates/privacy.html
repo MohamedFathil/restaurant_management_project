@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %} Privacy Policy - {{restaurant_name}} {% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/privacy.css' %}">
 {% endblock %}
+
 {% block content %}
 <section class="privacy-section">
     {% include 'includes/breadcrumbs.html' %}
@@ -20,6 +22,6 @@
     <p>We implement industry-standard security measures to protect your data from unauthorized access.</p>
 
     <h3>Contact Us</h3>
-    <p>If you have any questions about this Privacy Policy, please contact us.</p>
+    <p>If you have any questions about this Privacy Policy, please contact us...</p>
 </section>
 {% endblock %}
