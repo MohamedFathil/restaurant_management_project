@@ -39,8 +39,9 @@
 
         <!-- Footer -->
         <footer class="main-footer">
-            <p>&copy; {{restaurant_name|default:"Restaurant Management"}} {{current_year|default:"2025"}} | Opening Hours: {{opening_hours|default:"Not available"}}
+            <p>&copy; {{restaurant_name|default:"Restaurant Management"}} {{current_year|default:"2025"}}
             <br>
+            Opening Hours : {{opening_hours|default:"Monday - Sunday"}}
             <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
             <a href="#">Terms of Service</a>
             <br>
