@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>403 Forbidden</title>
+        <link rel="stylesheet" href="{% static 'css/error.css' %}">
+    </head>
+    <body>
+        <section class="error-page">
+            <h1>403 - Forbidden</h1>
+            <p>Sorry, you don't have permission to access this page</p>
+            <a href="{% url 'home' %}" class="btn">Return to Home</a>
+        </section>
+    </body>
+</html>
