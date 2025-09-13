@@ -18,4 +18,5 @@ urlpatterns = [
     path('newsletter-signup/',views.newsletter_signup, name='newsletter_signup'),
     path('our-story/', views.our_story, name="our_story"),
     path('our-team/', views.our_team, name="our_team"),
+    path('gallery/', views.gallery, name="gallery"),
 ]
