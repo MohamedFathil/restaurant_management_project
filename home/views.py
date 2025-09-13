@@ -180,3 +180,12 @@ def newsletter_signup(request):
 def our_team(request):
     """Render the our team page"""
     return render(request, 'our_team.html')
+
+def gallery(request):
+    """Handle the gallery logics"""
+    images = [
+        "https://source.unsplash.com/600x400/?restaurant,food",
+        "https://source.unsplash.com/600x400/?dinner,table",
+    ]
+    return render(request, 'gallery.html', {'images':images})
+    
