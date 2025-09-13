@@ -20,3 +20,29 @@
 .error-section .btn:hover{
     background: #0056b3;
 }
+/* 403 handing style */
+.error-page{
+    text-align: center;
+    padding: 60px;
+    font-family: 'Segoe', sans-serif;
+}
+.error-page h1{
+    font-size: 48px;
+    color: #c0392b;
+}
+.error-page p{
+    font-size: 20px;
+    margin: 20px 0;
+    color: #555;
+}
+.error-page .btn{
+    display: inline-block;
+    padding: 12px 24px;
+    background: #c0392b;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+.error-page .btn:hover{
+    background: #a93226;
+}
