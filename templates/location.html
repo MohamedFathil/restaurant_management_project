@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Restaurant Location{% endblock %}
+
+{% block content %}
+<section class="location-page">
+    <h1>Our Location</h1>
+    {% if restaurant_address.name %}
+        <p><strong>{{restaurant_address.name}}</strong></p>
+        <p>{{restaurant_address.address}}</p>
+        <p><strong>Phone: </strong>{{restaurant_address.phone|default:"Not Available"}}</p>
+    {% else %}
+        <p>Location details not Available</p>
+    {% endif %}
+
+    {% if map_url %}
+        <iframe src="{{map_url}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    {% endif %}
+</section>
+{% endblock %}
