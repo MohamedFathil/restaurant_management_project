@@ -190,4 +190,14 @@ def gallery(request):
     ]
     return render(request, 'gallery.html', {'images':images})
     
-def 
+def location(request):
+    """Location page for restaurant"""
+    try:
+        restaurant_address = RestaurantAddress.objects.first()
+        context = {
+            'restaurant_address':restaurant_address,
+            'map_url':"",
+        }
+        return render(request, "location.html", context)
+    except Exception as e:
+        return render(request, "location.html", {"error":str(e)})
