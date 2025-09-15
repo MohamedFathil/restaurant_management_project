@@ -111,6 +111,7 @@ def contact(request):
             'form':form,
             'restaurant':restaurant,
             'restaurant_phone':restaurant.phone if restaurant else None,
+            
             'current_year':now().year,
             'breadcrumb':breadcrumb,
         }
