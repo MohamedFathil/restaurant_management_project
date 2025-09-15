@@ -6,7 +6,7 @@ class Feedback(models.Model):
     submitted_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
-        return f"Feedback #{self.name} - {self.submitted_at.strftime('%Y-%m-%d)}"
+        return f"Feedback #{self.name} - {self.submitted_at.strftime('%Y-%m-%d')}"
 
 class Contact(models.Model):
     name = models.CharField(max_length=200)
@@ -32,7 +32,7 @@ class RestaurantLocation(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=50)
     zip_code = models.CharField(max_length=20)
-    email 
+    email = models.EmailField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.address}, {self.city}, {self.state}, {self.zip_code}"
