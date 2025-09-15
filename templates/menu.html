@@ -12,7 +12,7 @@
 <div class="menu-container">
     <h2 class="menu-title">Our Menu</h2>
 
-    <!-- Search Bar -->
+    <!-- Search Bar for items -->
     <form method="get" action="" class="search-form">
         <input type="text" name="q" placeholder="Search menu items..." value="{{query}}" class="search-input">
         <button type="submit" class="search-button">Search</button>
@@ -29,6 +29,7 @@
                     {% endif %}
                     <div class="menu-item-details">
                         <strong>{{item.name}}</strong> - {{item.price}}
+                        
                         <!-- Availability using custom filters -->
                         <span class="availability">{{item.available|availability_status}}</span>
 
