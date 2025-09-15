@@ -190,3 +190,4 @@ def gallery(request):
     ]
     return render(request, 'gallery.html', {'images':images})
     
+def 
