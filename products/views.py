@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.paginator import Paginator
 
-from .models import MenuItem
-from .serializers import ItemSerializer
+from .models import MenuItem, MenuCategory
+from .serializers import ItemSerializer, MenuCategorySerializer
 
 '''
 NOTE: Conside this as a reference and follow this same coding structure or format to work on you tasks
