@@ -1,0 +1,8 @@
+# reuse in the project
+
+PENDING = "Pending"
+PROCESSING = "Processing"
+COMPLETED = "Completed"
+CANCELLED = "Cancelled"
+
+DEFAULT_STATUSES = [PENDING, PROCESSING, COMPLETED, CANCELLED]
