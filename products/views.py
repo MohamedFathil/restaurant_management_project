@@ -10,6 +10,18 @@ from .serializers import ItemSerializer, MenuCategorySerializer
 '''
 NOTE: Conside this as a reference and follow this same coding structure or format to work on you tasks
 '''
+class MenuCategoryView(APIView):
+    def get(self, request):
+        """Fetch all menu categories with error handling"""
+        try:
+            categories = MenuCategory.objects.all()
+            serializer = MenuCategorySerializer(categories, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(
+                {'error':'Failed to retrieve categories', 'details':str(e)}
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 class ItemView(APIView):
 
