@@ -19,12 +19,39 @@ class MenuCategoryView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response(
-                {'error':'Failed to retrieve categories', 'details':str(e)}
+                {'error':'Failed to retrieve categories', 'details':str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+class MenuItemsByCategoryView(APIView):
+    def get(self, request):
+        """Fetch menu items filtered by category"""
+        category_name = request.query_params.get('category', None)
+
+        if not category_name:
+            return Response(
+                {'error':'category query parameter is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            menu_items = MenuItem.objects.filter(
+                category__name__iexact=category_name, available=True
+            )
+            if not menu_items.exists():
+                return Response(
+                    {'message':'No items found for this category'},
+                    status=status.HTTP_404_NOT_FOUND
+                )
+            serializer = ItemSerializer(menu_items, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(
+                {'error':'Faliled to fetch items by category','details':str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
 class ItemView(APIView):
-
     def get(self, request):
         items = MenuItem.objects.all()
         serializer = ItemSerializer(items, many=True)
@@ -36,6 +63,7 @@ class ItemView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 # API View for menu items
 class MenuItemView(APIView):
