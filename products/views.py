@@ -51,8 +51,10 @@ class MenuItemsByCategoryView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
     
+
+class MenuItemUpdateView(APIView):
+    """API to update a existing menu item"""
     def put(self, request, pk):
-        """API to update an existing menu item"""
         try:
             menu_item = get_object_or_404(MenuItem, pk=pk)
             serializer = ItemSerializer(menu_item, data=request.data, partial=True)
@@ -60,7 +62,7 @@ class MenuItemsByCategoryView(APIView):
             if serializer.is_valid():
                 if "price" in serializer.validated_data and serializer.validated_data["price"] <= 0:
                     return Response(
-                        {'error':'Price must be a positive value'},
+                        {'error':'Price must be positive'},
                         status=status.HTTP_400_BAD_REQUEST
                     )
                 serializer.save()
@@ -68,7 +70,7 @@ class MenuItemsByCategoryView(APIView):
             return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response(
-                {'error':'Failed to update menu item', 'details':str(e)}.
+                {'error':'Failed to update menu item','details':str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
