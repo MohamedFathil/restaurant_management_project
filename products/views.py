@@ -10,6 +10,48 @@ from .serializers import ItemSerializer, MenuCategorySerializer
 '''
 NOTE: Conside this as a reference and follow this same coding structure or format to work on you tasks
 '''
+
+class MenuItemSearchView(APIView):
+    def get(self, request):
+        """Search menu items by name"""
+        query = request.query_params.get("q","").strip()
+
+        if not query:
+            return Response(
+                {'error':'Search query parameter q is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            menu_items = MenuItem.objects.filter(name__icontains=query, available=True)
+
+            if not menu_items.exists():
+                return Response(
+                    {'message':'No menu items match your search'},
+                    status=status.HTTP_404_NOT_FOUND
+                )
+            # pagination
+            paginator = Paginator(menu_items, 10)
+            page_number = request.query_params.get('page',1)
+            page_obj = paginator.get_page(page_number)
+
+            serializer = ItemSerializer(page_obj, many=True)
+            return Response(
+                {
+                    "results":serializer.data,
+                    "count": paginator.count,
+                    "num_pages": paginator.num_pages,
+                    "current_page": page_obj.number,
+                },
+                status=status.HTTP_200_OK
+            )
+        except Exception as e:
+            return Response(
+                {'error':'Failed to search menu item', "details":str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+
 class MenuCategoryView(APIView):
     def get(self, request):
         """Fetch all menu categories with error handling"""
