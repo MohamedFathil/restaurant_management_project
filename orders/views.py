@@ -1,6 +1,26 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from products.models import MenuItem
+from .models import Order
+from .serializers import OrderSerializer
 import random
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import isAuthenticated
+from rest_framework import status
+
+class OrderHistoryView(APIView):
+    permission_classes = [isAuthenticated]
+
+    def get(self, request):
+        try:
+            orders = Order.objects.filter(customer=request.user).order_by('-created_at')
+            serializer = OrderSerializer(orders, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(
+                {'error':'Unable to fetch order history', 'detail':str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 def add_to_cart(request, item_id):
@@ -26,13 +46,14 @@ def view_cart(request):
         {'name':'Home','url':'/'},
         {'name':'Cart', 'url':'/cart/'}
     ]
-    return render(request, 'cart.html', {'breadcrumb':breadcrumb, 'cart':cart. 'total_price':total_price})
+    return render(request, 'cart.html', {'breadcrumb':breadcrumb, 'cart':cart, 'total_price':total_price})
 
 def remove_from_cart(request, item_id):
     """Remove item from the cart"""
     cart = request.session.get('cart',{})
+    item_id = str(item_id)
     if item_id in cart:
-        def cart[item_id]
+        del cart[item_id]
     request.session['cart'] = cart
     return redirect('view_cart')
 
