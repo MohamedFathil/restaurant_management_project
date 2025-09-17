@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -48,6 +48,27 @@ class MenuItemsByCategoryView(APIView):
         except Exception as e:
             return Response(
                 {'error':'Faliled to fetch items by category','details':str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+    
+    def put(self, request, pk):
+        """API to update an existing menu item"""
+        try:
+            menu_item = get_object_or_404(MenuItem, pk=pk)
+            serializer = ItemSerializer(menu_item, data=request.data, partial=True)
+
+            if serializer.is_valid():
+                if "price" in serializer.validated_data and serializer.validated_data["price"] <= 0:
+                    return Response(
+                        {'error':'Price must be a positive value'},
+                        status=status.HTTP_400_BAD_REQUEST
+                    )
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(
+                {'error':'Failed to update menu item', 'details':str(e)}.
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
