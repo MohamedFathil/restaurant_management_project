@@ -43,6 +43,10 @@ class Restaurant(models.Model):
     phone = models.CharField(max_length=15, null=True, blank=True)
     address = models.TextField()
     image = models.ImageField(upload_to="restaurant_images/", blank=True, null=True)
+    opening_days = models.CharField(
+        max_length = 10,
+        help_text = "Comma-seperated days (e.g., Mon,Tue,Wed,Thu,Fri)"
+    )
 
     def __str__(self):
         return self.name
