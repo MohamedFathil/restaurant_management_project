@@ -18,6 +18,11 @@ class OrderStatus(models.Model):
     def __str__(self):
         return self.name
 
+class ActiveOrderManager(models.Manager):
+    """Custom manager to filter active order"""
+    def get_active_orders(self):
+        return self.filter(status__in = ['pending', 'processing'])
+
 class Order(models.Model):
     STATUS_CHOICES = [
         ('pending','Pending'),
@@ -36,6 +41,7 @@ class Order(models.Model):
         related_name='orders'
     )
     created_at = models.DateTimeField(auto_add_now=True)
+    objects = ActiveOrderManager()
 
     def __str__(self):
         return f"Order #{self.id} by {self.customer.username}"
