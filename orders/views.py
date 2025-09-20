@@ -67,10 +67,9 @@ def remove_from_cart(request, item_id):
     return redirect('view_cart')
 
 def order_confirmation(request):
-    order_id = random.randint(1000, 9999)
-    # generate coupon code here
+    order_id = 1243
     coupon_code = generate_coupon_code()
-    Coupon.objects.create(
+    coupon = Coupon.objects.create(
         code=coupon_code,
         discount = 10,
         valid_from = timezone.now(),
@@ -91,4 +90,4 @@ def order_confirmation(request):
     ]
     request.session['cart'] = {}
     # pass coupon details
-    return render(request, 'order_confirmation.html', {'breadcrumb':breadcrumb, 'order_id':order_id,'coupon_code':coupon_code})
+    return render(request, 'order_confirmation.html', {'breadcrumb':breadcrumb, 'order_id':order_id,'coupon':coupon})
