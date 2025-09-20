@@ -10,7 +10,7 @@ class Coupon(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.name
+        return self.code
 
 class OrderStatus(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -21,7 +21,7 @@ class OrderStatus(models.Model):
 class ActiveOrderManager(models.Manager):
     """Custom manager to filter active order"""
     def get_active_orders(self):
-        return self.filter(status__in = ['pending', 'processing'])
+        return self.filter(status__name__in = ['pending', 'processing'])
 
 class Order(models.Model):
     STATUS_CHOICES = [
@@ -40,7 +40,7 @@ class Order(models.Model):
         blank=True,
         related_name='orders'
     )
-    created_at = models.DateTimeField(auto_add_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     objects = ActiveOrderManager()
 
     def __str__(self):
