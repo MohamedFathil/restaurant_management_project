@@ -17,29 +17,27 @@ def generate_coupon_code(length=10):
 
 logger = logging.getLogger(__name__)
 
-def send_order_confirmation_email(order_id, customer_email, customer_name, total_amount):
+def send_order_confirmation_email(order_id, customer_email, customer_name, total_amount, coupon_code=None):
     """
     Send Order confirmation email to the customer
     """
-    subject = f"Order Confirmation : Order ${order_id}"
-    message = (
-        f"Hello {customer_name},\n\n",
-        f"Thank you for your order!\n",
-        f"Your order ID is {order_id}\n",
-        f"Total amount : Rs{total_amount}\n\n",
-        f"We will notify you once your order is  processed.\n\n",
-        "Best Regards,\n"
-        "Restaurant Team"
-    )
-    from_email = settings.DEFAULT_FROM_EMAIL
     try:
-        send_mail(subject, message, from_email, [customer_email], fail_silently=False)
-        return {"success":True, "message":"Mail Sent"}
-    except BadHeaderError:
-        logger.error(f"Invalid header fount")
-        return {"success":False, "message":"Invalid header"}
+        subject = f"Order Confirmation : Order ${order_id}\n\n"
+        message = f"Hi {customer_name},\n"
+        message += f"Thank you for your order #{order_id}.\n"
+        message += f"Total Amount : Rs{total_amount}\n"
+        if coupon_code:
+            message += f"Here's a special coupon for you: {coupon_code}\n"
+        message += "\nWe hope to see you again soon!\n\nBest Regards,\nReaturant Team"
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [customer_email],
+            fail_silently=False
+        )
+        return "Email sent successfully"
     except Exception as e:
-        logger.error("Failed to sent mail")
-        return {"succes":False, "message":str(e)}
-        
+        return f"Failed to sent : {str(e)}"
+
 
