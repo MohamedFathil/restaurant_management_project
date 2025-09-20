@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
+from rest_framework.generics import RestrieveAPIView
 
 class OrderHistoryView(APIView):
     permission_classes = [IsAuthenticated]
@@ -22,6 +23,11 @@ class OrderHistoryView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
+class OrderDetailView(RestrieveAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = "id"
 
 def add_to_cart(request, item_id):
     """Add item to the cart"""
