@@ -8,8 +8,9 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.generics import RestrieveAPIView
-from .utils import generate_coupon_code
+from .utils import generate_coupon_code, send_order_confirmation_email
 from datetime import timedelta
+from django.utils import timezone
 
 class OrderHistoryView(APIView):
     permission_classes = [IsAuthenticated]
@@ -68,14 +69,20 @@ def remove_from_cart(request, item_id):
 def order_confirmation(request):
     order_id = random.randint(1000, 9999)
     # generate coupon code here
-    code = generate_coupon_code()
-    coupon = Coupon.objects.create(
-        code=code,
+    coupon_code = generate_coupon_code()
+    Coupon.objects.create(
+        code=coupon_code,
         discount = 10,
         valid_from = timezone.now(),
         valid_to = timezone.now() + timedelta(days=7),
         active = True
     )
+    customer_email = request.user.email
+    customer_name = request.user.get_full_name() or request.user.username
+    total_amount = 450.0
+
+    email_status = send_order_confirmation_email(order_id, customer_email, customer_name, total_amount, coupon_code)
+    print(email_status)
     breadcrumb = [
         {'name':'Home', 'url':'/'},
         {'name':'Menu', 'url':'/menu/'},
@@ -84,4 +91,4 @@ def order_confirmation(request):
     ]
     request.session['cart'] = {}
     # pass coupon details
-    return render(request, 'order_confirmation.html', {'breadcrumb':breadcrumb, 'order_id':order_id,'coupon':coupon})
+    return render(request, 'order_confirmation.html', {'breadcrumb':breadcrumb, 'order_id':order_id,'coupon_code':coupon_code})
