@@ -5,11 +5,11 @@ from .serializers import OrderSerializer
 import random
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import isAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
 class OrderHistoryView(APIView):
-    permission_classes = [isAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         try:
