@@ -30,6 +30,8 @@ DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_HOST_USER = "bitethebite@gmail.com"
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 RESTAURANT_EMAIL = "bitethebite@gmail.com"
 EMAIL_PORT = 587
 
