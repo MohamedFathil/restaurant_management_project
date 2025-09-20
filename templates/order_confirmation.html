@@ -11,11 +11,16 @@
     {% include 'includes/breadcrumbs.html' %}
     <h2>Order Confirmation</h2>
     <p>Your order has been placed successfully!</p>
-    <p><strong>Order Number : </strong>#{{order_id}}</p>
+    <div class="order-details">
+        <p><strong>Order Number : </strong>#{{order_id}}</p>
+        <p><strong>Total Amount : </strong>Rs. {{total_amount}}</p>
+    </div>
     {% if coupon_code %}
-        <p>Here's a special coupon for you.</p>
-        <h3>Coupon Code : <strong>{{coupon_code}}</strong></h3>
-        <p>Get {{coupon.discount}}% off on your next order! (Valid until {{coupon.valid_to}})</p>
+        <div class="coupon-section">   
+            <p>Here's a special coupon for you.</p>
+            <h3 class="coupon-code">Coupon Code : <strong>{{coupon_code}}</strong></h3>
+            <p>Get {{coupon.discount}}% off on your next order! (Valid until {{coupon.valid_to}})</p>
+        </div>
     {% endif %}
     <a href="{% url 'home' %}" class="btn">Back to Home</a>
 </div>
