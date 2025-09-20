@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from products.models import MenuItem
-from .models import Order
+from .models import Order, Coupon
 from .serializers import OrderSerializer
 import random
 from rest_framework.views import APIView
@@ -8,6 +8,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.generics import RestrieveAPIView
+from .utils import generate_coupon_code
+from datetime import timedelta
 
 class OrderHistoryView(APIView):
     permission_classes = [IsAuthenticated]
@@ -65,6 +67,15 @@ def remove_from_cart(request, item_id):
 
 def order_confirmation(request):
     order_id = random.randint(1000, 9999)
+    # generate coupon code here
+    code = generate_coupon_code()
+    coupon = Coupon.objects.create(
+        code=code,
+        discount = 10,
+        valid_from = timezone.now(),
+        valid_to = timezone.now() + timedelta(days=7),
+        active = True
+    )
     breadcrumb = [
         {'name':'Home', 'url':'/'},
         {'name':'Menu', 'url':'/menu/'},
@@ -72,4 +83,5 @@ def order_confirmation(request):
         {'name':'Confirmation', 'url':''}
     ]
     request.session['cart'] = {}
-    return render(request, 'order_confirmation.html', {'breadcrumb':breadcrumb, 'order_id':order_id})
+    # pass coupon details
+    return render(request, 'order_confirmation.html', {'breadcrumb':breadcrumb, 'order_id':order_id,'coupon':coupon})
