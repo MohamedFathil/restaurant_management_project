@@ -43,6 +43,12 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     objects = ActiveOrderManager()
 
+    def calculate_total(self):
+        total = Decimal("0.00")
+        for item in self.order_items.all():
+            total += item.price * item.quantity
+        return total
+
     def __str__(self):
         return f"Order #{self.id} by {self.customer.username}"
         
