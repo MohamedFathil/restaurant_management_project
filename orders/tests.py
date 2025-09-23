@@ -19,3 +19,4 @@ class OrderModelTest(TestCase):
     def test_calculate_total(self):
         total = self.order.calculate_total()
         self.assertEqual(total, Decimal("200.00"))
+    
