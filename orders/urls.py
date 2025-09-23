@@ -9,4 +9,5 @@ urlpatterns = [
     path('remove-from-cart/<int:item_id>/', views.remove_from_cart, name="remove_from_cart"),
     path('order-confirmation/', views.order_confirmation, name="order_confirmation"),
     path('order/<int:id>/', OrderDetailView.as_view(), name='order-detail'),
+    path('cancel/<int:order_id>/', OrderCancelView.as_view(), name='cancel-order'),
 ]
