@@ -41,6 +41,7 @@ class Order(models.Model):
         related_name='orders'
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    unique_id = models.CharField(max_length=12, unique=True, editable=False)
     objects = ActiveOrderManager()
 
     def calculate_total(self):
@@ -48,6 +49,12 @@ class Order(models.Model):
         for item in self.order_items.all():
             total += item.price * item.quantity
         return total
+    
+    def save(self, *args, **kwargs):
+        from .utils import generate_unique_order_id
+        if not self.unique_id:
+            self.unique_id = generate_unique_order_id()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Order #{self.id} by {self.customer.username}"
