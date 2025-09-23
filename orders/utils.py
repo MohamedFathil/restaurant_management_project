@@ -1,6 +1,6 @@
 import secrets
 import string
-from .models import Coupon
+from .models import Coupon, Order
 import logging
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
@@ -40,4 +40,13 @@ def send_order_confirmation_email(order_id, customer_email, customer_name, total
     except Exception as e:
         return f"Failed to sent : {str(e)}"
 
+def generate_unique_order_id(length=8):
+    """
+    Generate unique alphanumeric order ID.
+    """
+    characters = string.ascii_uppercase + string.digits
 
+    while True:
+        order_id = ''.join(secrets.choice(characters)) for _ in range(length)
+        if not Order.objects.filter(unique_id=order_id).exists():
+            return order_id
