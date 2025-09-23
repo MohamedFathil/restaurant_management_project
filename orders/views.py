@@ -92,7 +92,7 @@ def order_confirmation(request):
     # pass coupon details
     return render(request, 'order_confirmation.html', {'breadcrumb':breadcrumb, 'order_id':order_id,'coupon':coupon})
 
-class OrderCancelView(APIView):
+class CancelOrderView(APIView):
     permission_classes = [IsAuthenticated]
 
     def delete(self, request, order_id):
