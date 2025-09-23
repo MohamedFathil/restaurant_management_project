@@ -14,3 +14,14 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id','customer','created_at','total_amount', 'order_items', 'order_status']
+
+class OrderCancelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['id','status']
+
+        def update(self, instance, validated_data):
+            instance.status = 'cancelled'
+            instance.save()
+            return instance
+
