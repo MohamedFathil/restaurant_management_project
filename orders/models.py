@@ -44,6 +44,7 @@ class Order(models.Model):
     unique_id = models.CharField(max_length=12, unique=True, editable=False)
     objects = ActiveOrderManager()
 
+    # calculate the total amount here
     def calculate_total(self):
         total = Decimal("0.00")
         for item in self.order_items.all():
