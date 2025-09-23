@@ -91,3 +91,27 @@ def order_confirmation(request):
     request.session['cart'] = {}
     # pass coupon details
     return render(request, 'order_confirmation.html', {'breadcrumb':breadcrumb, 'order_id':order_id,'coupon':coupon})
+
+class OrderCancelView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, order_id):
+        try:
+            order = Order.objects.get(id=order_id, customer=request.user)
+        except Order.DoesNotExist:
+            return Response(
+                {'error':"Order does not exist"},
+                status = status.HTTP_404_NOT_FOUND
+            )
+        if order.status.name.lower() in ['completed','cancelled']:
+            return Response(
+                {"error":"This order cannot be cancelled"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        order.status.name = 'cancelled'
+        order.status.save()
+        return Response(
+            {"message": f"Order {order.id} has been cancelled"},
+            status=status.HTTP_200_OK
+        )
