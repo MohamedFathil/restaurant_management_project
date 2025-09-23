@@ -4,12 +4,16 @@ import smtplib
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.http import HttpResponse
-from .models import Feedback, Contact, RestaurantAddress, Restaurant, TodaysSpecial, Chef, NewsLetterSubscriber
+from .models import Feedback, Contact, RestaurantAddress, Restaurant, TodaysSpecial, Chef, NewsLetterSubscriber, ContactFormSubmission
 from django.utils.timezone import now
 from django.core.mail import send_mail
 from .forms import ContactForm, NewsLetterForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
+from .serializers import ContactFormSubmissionSerializer
+
 
 # configure logging
 logger = logging.getLogger(__name__)
@@ -201,3 +205,8 @@ def location(request):
         return render(request, "location.html", context)
     except Exception as e:
         return render(request, "location.html", {"error":str(e)})
+
+class ContactFormSubmissionView(CreateAPIView):
+    queryset = ContactFormSubmission.objects.all()
+    serializer_class = ContactFormSubmissionSerializer
+    permission_classes = [AllowAny]
