@@ -18,6 +18,23 @@ class OrderStatus(models.Model):
     def __str__(self):
         return self.name
 
+class OrderManager(models.Manager):
+
+    def by_status(self, status_name):
+        return self.filter(status__iexact = status_name)
+    
+    def pending(self):
+        return self.by_status('pending')
+
+    def processing(self):
+        return self.by_status('processing')
+
+    def completed(self):
+        return self.by_status('completed')
+    
+    def cancelled(self):
+        return self.by_status('cancelled')
+
 class ActiveOrderManager(models.Manager):
     """Custom manager to filter active order"""
     def get_active_orders(self):
@@ -42,7 +59,7 @@ class Order(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     unique_id = models.CharField(max_length=12, unique=True, editable=False)
-    objects = ActiveOrderManager()
+    objects = OrderManager()
 
     # calculate the total amount here
     def calculate_total(self):
