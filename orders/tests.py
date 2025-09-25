@@ -22,5 +22,6 @@ class OrderModelTest(TestCase):
         total = self.order.calculate_total()
         self.assertEqual(total, Decimal("200.00"))
     
-    def 
+    def test_calculate_total_with_coupon(self):
+        coupon = Coupon.objects.create() 
     
