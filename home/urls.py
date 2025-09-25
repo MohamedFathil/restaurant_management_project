@@ -21,4 +21,5 @@ urlpatterns = [
     path('gallery/', views.gallery, name="gallery"),
     path('location/', views.location, name="location"),
     path('api/contact/', views.ContactFormSubmissionView.as_view(), name='contact-form'),
+    path('daily-special/', views.DailySpecialsView.as_view(), name='daily-specials')
 ]
