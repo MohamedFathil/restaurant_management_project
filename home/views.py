@@ -213,6 +213,6 @@ class ContactFormSubmissionView(CreateAPIView):
     serializer_class = ContactFormSubmissionSerializer
     permission_classes = [AllowAny]
 
-class DailySpecialSerializer(generics.ListAPIView):
+class DailySpecialsView(generics.ListAPIView):
     queryset = MenuItem.objects.filter(is_daily_special=True)
     serializer_class = DailySpecialSerializer
