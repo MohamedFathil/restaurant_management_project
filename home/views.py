@@ -12,7 +12,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages 
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
-from .serializers import ContactFormSubmissionSerializer
+from .serializers import ContactFormSubmissionSerializer, DailySpecialSerializer
+from products.models import MenuItem 
+from rest_framework import generics
 
 
 # configure logging
@@ -210,3 +212,7 @@ class ContactFormSubmissionView(CreateAPIView):
     queryset = ContactFormSubmission.objects.all()
     serializer_class = ContactFormSubmissionSerializer
     permission_classes = [AllowAny]
+
+class DailySpecialSerializer(generics.ListAPIView):
+    queryset = MenuItem.objects.filter(is_daily_special=True)
+    serializer_class = DailySpecialSerializer
