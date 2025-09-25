@@ -21,6 +21,7 @@ class MenuItem(models.Model):
         blank=True,
         related_name='items'
     )
+    is_daily_special = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.name)
