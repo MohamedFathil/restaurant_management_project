@@ -2,6 +2,7 @@ import secrets
 import string
 from .models import Coupon, Order
 import logging
+from decimal import Decimal, ROUND_HALF_UP
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 
@@ -50,3 +51,24 @@ def generate_unique_order_id(length=8):
         order_id = ''.join(secrets.choice(characters)) for _ in range(length)
         if not Order.objects.filter(unique_id=order_id).exists():
             return order_id
+
+def calculate_discount(amount, coupon=None, percent=None):
+    amount = Decimal(str(amount))
+
+    if percent is None and coupon is not None and hasattr(coupon, "discount"):
+        try:
+            percent = Decimal(str(coupon.discount))
+        except Exception:
+            percent = None
+        
+    if percent is None:
+        return amount.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    
+    percent = Decimal(str(percent))
+    if percent <= 0:
+        return amount.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+    multiplier = (Decimal("100") - percent) / Decimal("100")
+    discounted = (amount*multiplier).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    return discounted
+    
