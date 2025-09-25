@@ -1,7 +1,9 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Coupon
 from decimal import Decimal
+from datetime import timedelta
+from django.utils import timezone
 from products.models import MenuItem
 
 class OrderModelTest(TestCase):
@@ -16,7 +18,9 @@ class OrderModelTest(TestCase):
         OrderItem.objects.create(order=self.order, menu_item=self.item1, quantity=2, price=self.item1.price)
         OrderItem.objects.create(order=self.order, menu_item=self.item2, quantity=1, price=self.item2.price)
 
-    def test_calculate_total(self):
+    def test_calculate_total_without_coupon(self):
         total = self.order.calculate_total()
         self.assertEqual(total, Decimal("200.00"))
+    
+    def 
     
