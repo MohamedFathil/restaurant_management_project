@@ -15,6 +15,9 @@ class Coupon(models.Model):
 
     def __str__(self):
         return self.code
+    
+    def is_valid(self):
+        return self.active and self.valid_from <= now <= self.valid_to
 
 class OrderStatus(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -68,9 +71,15 @@ class Order(models.Model):
     # calculate the total amount here
     def calculate_total(self):
         total = Decimal("0.00")
-        for item in self.order_items.all():
-            total += item.price * item.quantity
-        return total
+        for item in self.items.all():
+            total += item.line_total()
+        if self.coupon and self.coupon.is_valid():
+            total = calculate_discount(total, coupon=self.coupon)
+        return total.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+    def update_total(self):
+        self.total_amount = self.calculate_total()
+        self.save(update_fields=["total_amount"])
     
     def save(self, *args, **kwargs):
         from .utils import generate_unique_order_id
@@ -81,4 +90,14 @@ class Order(models.Model):
     def __str__(self):
         return f"Order #{self.id} by {self.customer.username}"
         
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name="items", on_delete=models.CASCADE)
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
 
+    def line_total(self):
+        return (self.price*self.quantity).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    
+    def __str__(self):
+        return f"{self.menu_item.name} x {self.quantity}"
