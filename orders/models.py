@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from products.models import  MenuItem
+from decimal import Decimal, ROUND_HALF_UP
+from django.conf import settings
+from django.utils import timezone
+from .utils import calculate_discount
 
 class Coupon(models.Model):
     code = models.CharField(max_length=20, unique=True)
