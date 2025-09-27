@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from products.models import MenuItem
 from .models import Order, Coupon
-from .serializers import OrderSerializer
+from .serializers import OrderSerializer, OrderStatusUpdateSerializer
 import random
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -117,7 +117,7 @@ class CancelOrderView(APIView):
         )
 
 class UpdateOrderStatusView(APIView):
-    def post(self, request, *args, **kwargs):
+    def put(self, request, *args, **kwargs):
         order_id = request.data.get("order_id")
         new_status = request.data.get("status")
 
@@ -129,17 +129,11 @@ class UpdateOrderStatusView(APIView):
         
         order = get_object_or_404(Order, id=order_id)
 
-        allowed_status = dict(Order.STATUS_CHOICES).key()
-        if new_status not in allowed_status:
+        serializer = OrderStatusUpdateSerializer(order, data={"status":new_status}, status=True)
+        if serializer.is_valid():
+            serializer.save()
             return Response(
-                {"error":"Invalid status"},
-                status=status.HTTP_400_BAD_REQUEST
+                {"message":"Order {order.id} status updated"},
+                status=status.HTTP_200_OK
             )
-
-        order.status = new_status
-        order.save()
-
-        return Response(
-            {"message":f"Order {order.id} status updated"},
-            status=status.HTTP_200_OK
-        )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
