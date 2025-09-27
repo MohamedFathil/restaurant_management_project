@@ -115,3 +115,31 @@ class CancelOrderView(APIView):
             {"message": f"Order {order.id} has been cancelled"},
             status=status.HTTP_200_OK
         )
+
+class UpdateOrderStatusView(APIView):
+    def post(self, request, *args, **kwargs):
+        order_id = request.data.get("order_id")
+        new_status = request.data.get("status")
+
+        if not order_id or not new_status:
+            return Response(
+                {"error":"order_id and status are required"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        order = get_object_or_404(Order, id=order_id)
+
+        allowed_status = dict(Order.STATUS_CHOICES).key()
+        if new_status not in allowed_status:
+            return Response(
+                {"error":"Invalid status"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        order.status = new_status
+        order.save()
+
+        return Response(
+            {"message":f"Order {order.id} status updated"},
+            status=status.HTTP_200_OK
+        )
